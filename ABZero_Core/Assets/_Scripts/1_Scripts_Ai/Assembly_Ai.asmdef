@@ -1,0 +1,20 @@
+{
+    "name": "Assembly_Ai",
+    "rootNamespace": "ABZ_Ai",
+    "references": [
+        "GUID:d1354e6854968be4eb14c72142f4d58b"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
