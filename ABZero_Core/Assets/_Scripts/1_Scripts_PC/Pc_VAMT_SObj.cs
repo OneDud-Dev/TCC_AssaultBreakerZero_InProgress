@@ -4,16 +4,17 @@ using UnityEngine;
 
 namespace ABZ_Pc
 {
-    public class Pc_VAMT_SObj : MonoBehaviour
+    [CreateAssetMenu(fileName = "SO_Mecha", menuName = "Mecha/SO_MechaData")]
+    public class Pc_VAMT_SObj : ScriptableObject
     {
-        public int backwardWalkPower;
-        public int forwardWalkPower;
-        public int forwardBurstPower;
+        public int      backwardWalkPower;
+        public int      forwardWalkPower;
+        public int      forwardBurstPower;
 
-        public int horizontalStrafePower;
-        public int horizontalBurstPower;
+        public int      horizontalStrafePower;
+        public int      horizontalBurstPower;
 
-        public int pivotRotatioValue;
-
+        public int      pivotRotatioValue;
+        public float    CamTurnSensitivity;
     }
 }

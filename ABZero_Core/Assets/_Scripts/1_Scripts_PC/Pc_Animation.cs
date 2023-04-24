@@ -6,9 +6,9 @@ namespace ABZ_Pc
 {
     public class Pc_Animation : MonoBehaviour
     {
-        public Pc_References data;
-        private Animator pcAnimetor;
-        private Pc_Movement pcMov;
+        public  Pc_References   data;
+        private Animator        pcAnimator;
+        private Pc_Movement     pcMov;
 
 
 
@@ -17,14 +17,14 @@ namespace ABZ_Pc
 
         private void Start()
         {
-            pcAnimetor = data.pcAnimator;
-            pcMov = data.pcMov;
+            pcAnimator  = data.pcAnimator;
+            pcMov       = data.pcMov;
         }
 
         private void FixedUpdate()
         {
-            pcAnimetor.SetFloat("Movement", pcMov.currentSpeed);
-            pcAnimetor.SetBool("isBoosting", pcMov.isBoosting);
+            pcAnimator.SetFloat("Movement", pcMov.currentSpeed);
+            pcAnimator.SetBool("isBoosting", pcMov.isBoosting);
 
         }
     }

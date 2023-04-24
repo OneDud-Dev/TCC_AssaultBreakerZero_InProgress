@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "-------",
-                    "type": "Button",
-                    "id": "1e548a5f-369c-46f5-b243-b9725ae9abb8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "CharMovement",
                     "type": "Value",
                     "id": "fa0e3658-5782-4372-aad1-44c83cdef240",
@@ -55,15 +46,6 @@
                     "type": "PassThrough",
                     "id": "ca0aaa4e-3aee-47ab-aec9-de28c458b9de",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "-----",
-                    "type": "Button",
-                    "id": "1d03d07e-f9c0-4b00-bbe0-6bac6d041265",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -123,15 +105,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "----",
-                    "type": "Button",
-                    "id": "2a72994a-d437-40b8-bd19-52c232a355e0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "79dfbda0-f846-4271-8fb3-afa040bd099d",
@@ -172,28 +145,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpecialArm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "64fd9f7a-f809-4977-8a13-b9545ecea940",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "-------",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "803a96ad-7360-4c38-8979-0aba8099f80d",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CharMovement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -254,34 +205,12 @@
                 },
                 {
                     "name": "",
-                    "id": "fd8ba841-8d1a-47e5-be1f-db0b42a4bd14",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CamMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a2e0aab9-5a6b-438b-85b0-669b6c80f125",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "CamMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a6c0f09c-07c0-4293-8e74-40b5d5f0e121",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "-----",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -348,17 +277,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockTargetAction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "180bf07d-05b2-409b-bc71-04068bb75dc0",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "----",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

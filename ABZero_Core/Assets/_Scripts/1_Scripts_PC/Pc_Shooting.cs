@@ -78,18 +78,19 @@ namespace ABZ_Pc
 
         private void Start()
         {
-            pcTarget = pcData.pcTarget;
+            pcTarget = pcData.pcAutoTarget;
 
             //get weapon type references
-            pAutoRifle = pcData.gunAR;
-            pGaus = pcData.gunGaus;
-            pLaser = pcData.gunLaser;
-            pEmpty = pcData.noWeapon;
+            pAutoRifle  = pcData.gunAR;
+            pGaus       = pcData.gunGaus;
+            pLaser      = pcData.gunLaser;
+            pEmpty      = pcData.noWeapon;
             sMissileLaucher = pcData.gunMissile;
-            sCannon = pcData.gunCannon;
-            sMortar = pcData.gunMortar;
-            sMines = pcData.gunMine;
-            sEmpty = pcData.noSpecial;
+            sCannon     = pcData.gunCannon;
+            sMortar     = pcData.gunMortar;
+            sMines      = pcData.gunMine;
+            sEmpty      = pcData.noSpecial;
+            
             isHoldingPrimaryFire = false;
             isHoldingSpecialFire = false;
 
@@ -109,7 +110,8 @@ namespace ABZ_Pc
 
 
             if (isHoldingPrimaryFire) { UsePrimaryWeapon(); }
-            //if (isHoldingSpecialFire) { UseSpecialWeapon(); }
+            //if (isHoldingSsecondaryFire) { UseSecondaryWeapon(); }
+
         }
 
         #endregion
@@ -256,7 +258,7 @@ namespace ABZ_Pc
             {
                 primaryTimer = 0f;
                 primaryCurrentClip += 1;
-                equippedPrimary.SpawnProjectile(pcData.rightArmAim);
+                equippedPrimary.SpawnProjectile(pcData.rightArmTarget);
 
 
                 //TRY - start reload on the same frame?
@@ -356,7 +358,7 @@ namespace ABZ_Pc
             {
                 isRealoadingSpecial = false;
 
-                if (pcData.pcTarget.currentTarget != null)
+                if (pcData.pcAutoTarget.currentTarget != null)
                 {
                     StartCoroutine(SpecialWeaponCoroutine());
                 }

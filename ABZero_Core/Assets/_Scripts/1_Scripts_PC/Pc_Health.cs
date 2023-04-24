@@ -49,6 +49,8 @@ namespace ABZ_Pc
                     indicatorRed.gameObject.SetActive(true);
                 }
             }
+
+
         }
     }
 }

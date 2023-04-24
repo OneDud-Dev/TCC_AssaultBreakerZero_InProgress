@@ -8,19 +8,19 @@ namespace ABZ_Pc
     {
 
         #region Variables
-
-        public Pc_References pcData;
+        public Pc_References    pcData;
         public List<GameObject> enemiesOnRange;
 
-        public GameObject hudTargetPos;
-        private Vector3 hudCanvasDirection;
+        public GameObject   hudTargetPos;
+        private Vector3     hudCanvasDirection;
 
-        public GameObject currentTarget;
-        public GameObject closestTarget;
+        public GameObject   currentTarget;
+        public GameObject   closestTarget;
 
-        private bool lockTarget;
-
+        private bool        lockTarget;
         #endregion
+
+
 
         #region Unity Methods
 
