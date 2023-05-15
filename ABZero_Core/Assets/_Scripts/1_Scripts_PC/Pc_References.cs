@@ -51,15 +51,15 @@ namespace ABZ_Pc
 
 
         [Header("Rig References")]
-        public Transform torsoRig;
+        public Transform torsoPivot;
         public Transform torsoTarget;
         
-        public Transform leftArmRig;
+        public Transform leftArmPìvot;
         public Transform leftArmTarget;
-        public Transform rightArmRig;
+        public Transform rightArmPivot;
         public Transform rightArmTarget;
         
-        public Transform specialArmPivotRig;
+        public Transform specialArmPivotPivot;
         public Transform specialArmPivotTarget;
         //procedure leg animation
         public Transform rightLegTarget;

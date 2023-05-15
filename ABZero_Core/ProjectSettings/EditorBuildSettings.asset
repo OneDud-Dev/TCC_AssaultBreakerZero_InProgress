@@ -15,13 +15,13 @@ EditorBuildSettings:
     path: Assets/Scenes/03_MissionDebriefingEnd.unity
     guid: 41db4490e9972e74eb2103bc73042179
   - enabled: 1
-    path: Assets/Scenes/04_lvl_1_1_TrainingDay_Hangar.unity
+    path: Assets/Scenes/04_lvl_1_1_TrainingDay_Underground.unity
     guid: 4d658ca876c7dc448ad2d8393b9a54a5
   - enabled: 1
-    path: Assets/Scenes/05_lvl_1_2_TrainingDay_ShootingRange.unity
+    path: Assets/Scenes/05_lvl_1_2_TrainingDay_Surface.unity
     guid: 438ff354a970a4c48ac9ffeaaf334478
   - enabled: 1
-    path: Assets/Scenes/06_lvl_2___RetakeTheBase.unity
+    path: Assets/Scenes/06_lvl_2___Pursuit.unity
     guid: 0da8272b7280d6b4fa6d6676af366bc2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 7381343926dda84438837d78d17a2194,

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace ABZ_Pc
 {
@@ -14,13 +15,14 @@ namespace ABZ_Pc
         public bool debugMessages;
         public bool MovGismos;
         public bool isBoosting;
+
         #region References
 
         [Header("Object References")]
         private Transform forwardReference;
         private Transform lowerBody;
         private Rigidbody sphereMov;
-
+        //public  Rigidbody rbBodyVelocity;
         private Transform pivotPos;
 
         #endregion
@@ -32,12 +34,17 @@ namespace ABZ_Pc
 
         #region MovementData
 
-        public MovementType currentMovement;
-        public verticality  currentVerticalStatus;
-        public LayerMask    groundLayer;
+        [Header("Movement Status")]
+                         public MovementType currentMovement;
+                         public verticality  currentVerticalStatus;
+                         public LayerMask    groundLayer;
         [SerializeField] private float groundCheckLength;
 
+        [Header("Velocity on each axis")]
+                        public Vector3 ForwardLateralVertical;
+        
         [Header("Movement forces")]
+
         [SerializeField] private float forwardForce;
         [SerializeField] private float horizontalForce;
         [SerializeField] private float downwardForce;
@@ -45,12 +52,11 @@ namespace ABZ_Pc
 
 
         [Header("Movement Value")]
-        public bool  isCalculatingSpeed;
-        public float currentSpeed;
-        public float currentVerticalSpeed;
-
-        public float currentAltitudeValue;
-        public float currentAngleValue;
+                         public bool  isCalculatingSpeed;
+                         public float currentSpeed;
+                       //public float currentVerticalSpeed; Deprecieted
+                         public float currentAltitudeValue;
+                         public float currentAngleValue;
         #endregion
 
         #endregion
@@ -353,15 +359,31 @@ namespace ABZ_Pc
 
         private IEnumerator ICalculateSpeed()
         {
-
-
             while (pcData.pcCtrl.isPlaying)
             {
-                Vector3 prevPos = pivotPos.position;
+                ForwardLateralVertical = new Vector3(
+                   (float)Math.Round(pivotPos.InverseTransformDirection(sphereMov.velocity).x, 3),
+                   (float)Math.Round(pivotPos.InverseTransformDirection(sphereMov.velocity).y, 3),
+                   (float)Math.Round(pivotPos.InverseTransformDirection(sphereMov.velocity).z, 3) );
+
+                yield return null;
+                
+
+                /*
+                Vector3 prevPos = transform.InverseTransformDirection(pivotPos.localPosition);
 
                 yield return new WaitForFixedUpdate();
 
+                ForwardLateralVertical = new Vector3
+                (
+                (float)Math.Round (transform.InverseTransformVector(pivotPos.position).x - prevPos.x, 3),
+                (float)Math.Round (transform.InverseTransformVector(pivotPos.position).y - prevPos.y, 3),
+                (float)Math.Round (transform.InverseTransformVector(pivotPos.position).z - prevPos.z, 3)
+                ) / Time.fixedDeltaTime;
+
+
                 currentSpeed = (Vector3.Distance(pivotPos.position, prevPos) / Time.fixedDeltaTime);
+                */
             }
         }
 

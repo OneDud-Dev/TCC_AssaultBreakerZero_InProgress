@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 743
+  m_VersionIndex: 749
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4021,11 +4021,19 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5062
+  m_VersionIndex: 5065
   m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedFaces: 01000000
+  m_SelectedEdges:
+  - a: 7
+    b: 4
+  - a: 4
+    b: 5
+  - a: 5
+    b: 6
+  - a: 6
+    b: 7
+  m_SelectedVertices: 05000000070000000400000006000000
 --- !u!114 &8709228772847810360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4804,64 +4812,47 @@ MonoBehaviour:
     m_ManualUV: 0
     elementGroup: -1
     m_TextureGroup: -1
-  - m_Indexes: 940000009500000096000000950000009700000096000000
-    m_SmoothingGroup: 0
-    m_Uv:
-      m_UseWorldSpace: 0
-      m_FlipU: 0
-      m_FlipV: 0
-      m_SwapUV: 0
-      m_Fill: 1
-      m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
-      m_Anchor: 9
-    m_Material: {fileID: 0}
-    m_SubmeshIndex: 0
-    m_ManualUV: 0
-    elementGroup: -1
-    m_TextureGroup: -1
   m_SharedVertices:
-  - m_Vertices: 000000001a00000071000000880000008d000000
-  - m_Vertices: 740000008a0000008f000000
-  - m_Vertices: 1f000000730000008c00000095000000
-  - m_Vertices: 760000008e00000097000000
-  - m_Vertices: 0d00000016000000180000006900000070000000
-  - m_Vertices: 1d0000006b00000072000000
+  - m_Vertices: 000000001a0000006d0000008400000089000000
+  - m_Vertices: 70000000860000008b000000
+  - m_Vertices: 1f0000006f0000008800000091000000
+  - m_Vertices: 720000008a00000093000000
+  - m_Vertices: 0d0000001600000018000000650000006c000000
+  - m_Vertices: 1d000000670000006e000000
   - m_Vertices: 010000001b00000022000000
-  - m_Vertices: 040000004a0000004f000000
-  - m_Vertices: 3a0000003f000000480000004d000000
+  - m_Vertices: 040000004b000000
+  - m_Vertices: 3a0000003f00000049000000
   - m_Vertices: 170000001900000020000000380000003d000000
-  - m_Vertices: 02000000270000006c0000008900000090000000
-  - m_Vertices: 750000008b00000092000000
-  - m_Vertices: 1e0000006e0000009100000094000000
-  - m_Vertices: 770000009300000096000000
-  - m_Vertices: 0f0000001000000025000000680000006d000000
-  - m_Vertices: 1c0000006a0000006f000000
+  - m_Vertices: 020000002700000068000000850000008c000000
+  - m_Vertices: 71000000870000008e000000
+  - m_Vertices: 1e0000006a0000008d00000090000000
+  - m_Vertices: 730000008f00000092000000
+  - m_Vertices: 0f00000010000000250000006400000069000000
+  - m_Vertices: 1c000000660000006b000000
   - m_Vertices: 030000002300000026000000
-  - m_Vertices: 060000004e00000057000000
-  - m_Vertices: 3e000000470000004c00000055000000
+  - m_Vertices: 060000004a00000053000000
+  - m_Vertices: 3e000000470000004800000051000000
   - m_Vertices: 1100000021000000240000003c00000045000000
-  - m_Vertices: 050000004b00000052000000
-  - m_Vertices: 3b000000420000004900000050000000
+  - m_Vertices: 050000004e000000
+  - m_Vertices: 3b000000420000004c000000
   - m_Vertices: 15000000280000002d0000003900000040000000
   - m_Vertices: 080000002a0000002f000000
-  - m_Vertices: 070000005300000056000000
-  - m_Vertices: 43000000460000005100000054000000
+  - m_Vertices: 070000004f00000052000000
+  - m_Vertices: 43000000460000004d00000050000000
   - m_Vertices: 130000002c000000350000004100000044000000
   - m_Vertices: 0a0000002e00000037000000
-  - m_Vertices: 090000002b0000005c0000007900000080000000
-  - m_Vertices: 650000007b00000082000000
-  - m_Vertices: 320000005e0000008100000084000000
-  - m_Vertices: 670000008300000086000000
-  - m_Vertices: 0c0000001400000029000000580000005d000000
-  - m_Vertices: 300000005a0000005f000000
-  - m_Vertices: 0b0000003600000061000000780000007d000000
-  - m_Vertices: 640000007a0000007f000000
-  - m_Vertices: 33000000630000007c00000085000000
-  - m_Vertices: 660000007e00000087000000
-  - m_Vertices: 0e00000012000000340000005900000060000000
-  - m_Vertices: 310000005b00000062000000
+  - m_Vertices: 090000002b00000058000000750000007c000000
+  - m_Vertices: 61000000770000007e000000
+  - m_Vertices: 320000005a0000007d00000080000000
+  - m_Vertices: 630000007f00000082000000
+  - m_Vertices: 0c00000014000000290000005400000059000000
+  - m_Vertices: 30000000560000005b000000
+  - m_Vertices: 0b000000360000005d0000007400000079000000
+  - m_Vertices: 60000000760000007b000000
+  - m_Vertices: 330000005f0000007800000081000000
+  - m_Vertices: 620000007a00000083000000
+  - m_Vertices: 0e0000001200000034000000550000005c000000
+  - m_Vertices: 31000000570000005e000000
   m_SharedTextures: []
   m_Positions:
   - {x: 13, y: -19, z: 6}
@@ -4936,10 +4927,6 @@ MonoBehaviour:
   - {x: -41, y: 60, z: 5}
   - {x: -41, y: 60, z: 1}
   - {x: -41, y: 60, z: 5}
-  - {x: 15, y: -19, z: 5}
-  - {x: 15, y: -19, z: 1}
-  - {x: 15, y: -19.5, z: 5}
-  - {x: 15, y: -19.5, z: 1}
   - {x: -41, y: 60, z: 5}
   - {x: 15, y: -19, z: 5}
   - {x: -41, y: 59.5, z: 5}
@@ -5089,10 +5076,6 @@ MonoBehaviour:
   - {x: -41, y: 5}
   - {x: -41, y: 1}
   - {x: -41, y: 5}
-  - {x: -5, y: -19}
-  - {x: -1, y: -19}
-  - {x: -5, y: -19.5}
-  - {x: -1, y: -19.5}
   - {x: -41, y: 60}
   - {x: 15, y: -19}
   - {x: -41, y: 59.5}
@@ -5244,10 +5227,6 @@ MonoBehaviour:
   - {x: -0, y: 1, z: 0, w: 1}
   - {x: -0, y: 1, z: 0, w: 1}
   - {x: -0, y: 1, z: 0, w: 1}
-  - {x: 0, y: 0, z: -1, w: -1}
-  - {x: 0, y: 0, z: -1, w: -1}
-  - {x: 0, y: 0, z: -1, w: -1}
-  - {x: 0, y: 0, z: -1, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
@@ -5333,13 +5312,11 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3633
+  m_VersionIndex: 3639
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges:
-  - a: 0
-    b: 0
-  m_SelectedVertices: 0000000000000000
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &7841586831418445810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7509,7 +7486,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 746
+  m_VersionIndex: 749
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

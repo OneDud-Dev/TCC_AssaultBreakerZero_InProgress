@@ -10,6 +10,9 @@ namespace ABZ_Pc
         #region Variables
 
         public  Pc_References pcData;
+
+        public bool isCameraMoving;
+
         private Pc_VAMT_SObj  playerConfig;
         private InputAction   mouseAction;
 
@@ -43,7 +46,10 @@ namespace ABZ_Pc
 
         private void Update()
         {
-            CameraPivotRotate(camPivot, turnVector);
+            if (isCameraMoving)
+            {
+                CameraPivotRotate(camPivot, turnVector);
+            }
 
             //SetObjectPosition(camPivot, sphereMovPos);
             //SetObjectPosition(camPivot, mainPivot);
@@ -61,6 +67,8 @@ namespace ABZ_Pc
         }
         */
 
+
+        #region Methods
         //unity event
         public void GetMouseHorizontalDeltaValue() => 
             turnVector += (float)mouseAction.ReadValue<Vector2>().x * playerConfig.CamTurnSensitivity;
@@ -86,6 +94,8 @@ namespace ABZ_Pc
 
         public void     UnlockCursor() => Cursor.lockState = CursorLockMode.None;
 
+
+        #endregion
         
 
     }

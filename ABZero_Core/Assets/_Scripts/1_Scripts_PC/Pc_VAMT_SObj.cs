@@ -14,7 +14,7 @@ namespace ABZ_Pc
         public int      horizontalStrafePower;
         public int      horizontalBurstPower;
 
-        public int      pivotRotatioValue;
+        public float    pivotRotatioValue;
         public float    CamTurnSensitivity;
     }
 }

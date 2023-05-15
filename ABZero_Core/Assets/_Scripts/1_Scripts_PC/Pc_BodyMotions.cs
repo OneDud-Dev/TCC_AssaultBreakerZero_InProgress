@@ -29,6 +29,7 @@ namespace ABZ_Pc
         #endregion
 
         #region Objects References
+        private Pc_VAMT_SObj pcVamtOptions;
         private Transform sphereMov;
         private Transform cameraFollow;
         private Transform mainPivot;
@@ -52,7 +53,7 @@ namespace ABZ_Pc
 
         private void Start()
         {
-            
+            pcVamtOptions = pcData.vamtSettings;
             //others
             sphereMov       = pcData.sphereMov.transform;
             cameraFollow    = pcData.camFollow;
@@ -62,9 +63,9 @@ namespace ABZ_Pc
             upperBody       = pcData.upperBody;
             lowerBody       = pcData.lowerBody;
             //rigs
-            rightArmRig     = pcData.rightArmRig;
+            rightArmRig     = pcData.rightArmPivot;
             rightArmTarget  = pcData.rightArmTarget;
-            leftArmRig      = pcData.leftArmRig;
+            leftArmRig      = pcData.leftArmPìvot;
             leftArmTarget   = pcData.leftArmTarget;
             rightLegTarget  = pcData.rightLegTarget;
             leftLegTarget   = pcData.leftLegTarget;
@@ -80,15 +81,17 @@ namespace ABZ_Pc
 
             SetObjectPosition(bodyRootPos, sphereMov);
             SetObjectPosition(mainPivot,   sphereMov);
-            
-            
+            RotateObjOverTime(mainPivot, cameraFollow, 1);
+            RotateObjOverTime(bodyRootPos, mainPivot, pcVamtOptions.pivotRotatioValue);
+
+            /*
             //SetObjectPosition(cameraFollow,sphereMov);
 
             //SetObjPosDamped(bodyRootPos, sphereMov, BodyDampingVel, 1);
             //SetObjPosDamped(mainPivot,   sphereMov, ref 1,1);=========================================================
 
             //RotateObjOverTime(lowerBody, legDirection); //needs smooth / damping
-
+            */
         }
 
         private void FixedUpdate()
