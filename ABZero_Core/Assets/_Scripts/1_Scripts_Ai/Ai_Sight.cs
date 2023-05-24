@@ -6,6 +6,7 @@ namespace ABZ_Ai
 {
     public class Ai_Sight : MonoBehaviour
     {
+        #region Variables
         public Ai_References data;
         private SphereCollider sightTrigger;
         private Ai_Controller aiCtrl;
@@ -13,7 +14,10 @@ namespace ABZ_Ai
 
         public float sightRange;
 
+        #endregion
 
+
+        #region Unity
 
         private void Start()
         {
@@ -40,15 +44,17 @@ namespace ABZ_Ai
                     break;
 
 
+                #region Unused
                 case Ai_Controller.aiTravelType.Patroler:
                     break;
-
-
                 default:
                     break;
+
+                #endregion
             }
         }
 
+        #endregion
 
         private void ChaserLookForEnemy(Collider _char)
         {
@@ -65,11 +71,12 @@ namespace ABZ_Ai
                 {
                     aiCombat.enemyTargets.Add(_char.gameObject);
 
-                    //mudar o alvo da IA para jogador a primeira vista, mal implementado
-                    //if (_char.CompareTag("Player"))
-                    //{
-                    //    aiCombat.enemyTargets.RemoveAt(0);
-                    //}
+                    /*mudar o alvo da IA para jogador a primeira vista, mal implementado
+                    if (_char.CompareTag("Player"))
+                    {
+                        aiCombat.enemyTargets.RemoveAt(0);
+                    }
+                    */
                 }
             }
         }

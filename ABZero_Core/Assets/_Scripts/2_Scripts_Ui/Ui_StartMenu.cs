@@ -1,21 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace ABZ_Ui
 {
     public class Ui_StartMenu : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+
+        public Canvas Cvs_Splash;
+        public Canvas Cvs_Start;
+        public Canvas Cvs_Options;
+        public Canvas Cvs_Campaing;
+        public Canvas Cvs_ChapterSelect;
+
+
+
+
+
+        #region Screen Changers
+        public void Bton_Splash()
         {
-        
+            TurnOffCanvas(Cvs_Splash);
+            TurnOnCanvas(Cvs_Start);
+        }
+        public void Bton_Campaing()
+        {
+            TurnOffCanvas(Cvs_Start);
+            TurnOnCanvas(Cvs_Campaing);
+        }
+        public void Bton_Campaing_B()
+        {
+            TurnOffCanvas(Cvs_Campaing);
+            TurnOnCanvas(Cvs_Start);
+        }
+        public void Bton_Options()
+        {
+            TurnOffCanvas(Cvs_Start);
+            TurnOnCanvas(Cvs_Options);
+        }
+        public void Bton_Options_B()
+        {
+            TurnOffCanvas(Cvs_Options);
+            TurnOnCanvas(Cvs_Start);
+        }
+        public void Bton_Chapters()
+        {
+            TurnOffCanvas(Cvs_Start);
+            TurnOnCanvas(Cvs_ChapterSelect);
+        }
+        public void Bton_Chapters_B()
+        {
+            TurnOffCanvas(Cvs_ChapterSelect);
+            TurnOnCanvas(Cvs_Start);
         }
 
-        // Update is called once per frame
-        void Update()
+        #endregion
+
+        #region Socials
+
+        public void Btn_linkedin()
         {
-        
+
         }
+        public void Btn_Twitter()
+        {
+
+        }
+        public void Btn_GitHub()
+        {
+
+        }
+
+        #endregion
+
+        #region Option Controls
+        public void SetAudioMaster()
+        {
+
+        }
+        public void SetAudioMusic()
+        {
+
+        }
+        public void SetAudioSfx()
+        {
+
+        }
+        public void SetResolution()
+        {
+
+        }
+        public void SetFOV()
+        {
+
+        }
+
+        #endregion
+
+        #region ChapterSelect
+        public void LoadLvl1()
+        {
+
+        }
+        public void LoadLvl2()
+        {
+
+        }
+        
+        #endregion
+    
+
+        public void TurnOnCanvas(Canvas cvs) => cvs.gameObject.SetActive(true);
+        public void TurnOffCanvas(Canvas cvs) => cvs.gameObject.SetActive(false);
     }
 }

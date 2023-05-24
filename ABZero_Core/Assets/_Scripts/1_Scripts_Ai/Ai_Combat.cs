@@ -7,6 +7,7 @@ namespace ABZ_Ai
 {
     public class Ai_Combat : MonoBehaviour
     {
+        #region Variables
         [Header("References")]
         public Ai_References data;
         public W_FireArms equipedWeapon;
@@ -20,6 +21,9 @@ namespace ABZ_Ai
         [Header("")]
         public List<GameObject> enemyTargets;
         public int enemyIndex;
+
+        #endregion
+
 
 
 
@@ -45,7 +49,16 @@ namespace ABZ_Ai
         }
         #endregion
 
-
+        public void VerifyIfHasEnemyTarget()
+        {
+            if (enemyTargets.Count > 0)
+            {
+                if (!enemyTargets[0].activeInHierarchy)
+                {
+                    enemyTargets.RemoveAt(0);
+                }
+            }
+        }
 
 
         #region Coroutines
