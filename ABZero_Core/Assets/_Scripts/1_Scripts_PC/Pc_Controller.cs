@@ -1,7 +1,9 @@
+using ABZ_GameSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace ABZ_Pc
 {
@@ -12,45 +14,60 @@ namespace ABZ_Pc
 
         [Header("Data Reference")]
         public Pc_References pcData;
-        
+        public Game_Events OnPauseGame;
         [Header("Ref Set")]
         public Pc_VAMT_SObj vamtSetting;
-        public bool playerIsActive;
+        public bool         playerIsActive;
 
         [Header("Gameplay Set")]
+        #region Player settings
         public int  hp;
-        public bool canAccel;
-        public bool canAttack;
         public bool isPlaying;
+        public bool canBoost;
+        public bool canRun;
+        public bool canMove;
+        public bool canAttack;
 
-        //[Header("Data Reference")]
+        #endregion
+
+        //[Header("Data Reference")]    all those are privated
+        #region Scripts refs
         private Pc_Aiming       pcAim;
         private Pc_CameraCtrl   pcCam;
         private Pc_Movement     pcMov;
         private Pc_Shooting     pcShoot;
         private Pc_AutoTarget   pcAutoTgt;
 
+        #endregion
+
         //[Header("Body Reference")]
+        #region GameObj Refs
         private Transform playerBody;
         private Rigidbody sphereMov;
         private Transform camPivot;
 
+        #endregion
+
         //[Header("Input Reference")]
+        #region ÍnputActions
         private InputAction moveAction;
         private InputAction accelAction;
+        private InputAction boostAction;
         private InputAction shootActionPrimary;
         private InputAction shootActionSecondary;
         private InputAction shootActionSpecialS;
         private InputAction pauseAction;
 
-        //
+        #endregion
+
+        
         [SerializeField] private Vector2 playerMovinput;
         #endregion
 
 
 
 
-        #region Unity Setup
+        #region Unity
         private void Start()
         {
 
@@ -69,6 +86,7 @@ namespace ABZ_Pc
             //get input references
             moveAction           = pcData.pcInput.actions["CharMovement"];
             accelAction          = pcData.pcInput.actions["AccelAction"];
+            boostAction          = pcData.pcInput.actions["BoostAction"];
             shootActionPrimary   = pcData.pcInput.actions["PrimaryArm"];
             shootActionSecondary = pcData.pcInput.actions["SecondaryArm"];
             shootActionSpecialS  = pcData.pcInput.actions["SpecialArm"];
@@ -77,42 +95,26 @@ namespace ABZ_Pc
             pcMov.currentVerticalStatus = Pc_Movement.verticality.Grounded;
         }
 
-        #endregion
-
-
         private void Update()
         {
             //remember, value from ScriptableObject are being used
             //chama os metodos dasa classes necessarias para aplicar a função
-            
-            if (playerIsActive)
+
+            switch (pcData.gameIsRunning)
             {
-            //playerMovinput = moveAction.ReadValue<Vector2>(); 
-            //trying to use unity events> using getmovinput on PlayerInput component
-            //Unity Event sucessfull
-
-            ForwardVectorMovInput();
-            HorizontalVectorMovInput();
-            ActivateBoost(accelAction);
-
+                case false:
+                    break;
+                case true:
+                    if (playerIsActive)
+                    {
+                        ForwardVectorMovInput();
+                        HorizontalVectorMovInput();
+                    }
+                    break;
             }
-
-
-
-            #region Debug gismos
-            if (pcMov.MovGismos)
-            {
-                Debug.DrawLine(sphereMov.position, sphereMov.velocity, Color.black);
-            }
-
-
-            #endregion
         }
 
-
-
-        //TODO: send events to UI => health, points, 
-
+        #endregion
 
 
 
@@ -120,93 +122,129 @@ namespace ABZ_Pc
         #region input Functions
 
         //----------------------------Actions
-        public void PrimaryFire(InputAction.CallbackContext context)
+        #region attack Actions
+        public void LeftArmAction(InputAction.CallbackContext _leftButton)
         {
-            if (context.performed)
-            {
-                pcShoot.HoldToFirePrimary();
-            }
+            if (_leftButton.performed) { pcShoot.HoldToUseLeftArm(); }
         }
 
-        public void SpecialFire(InputAction.CallbackContext context)
+        public void RightArmAction(InputAction.CallbackContext _rightButton)
         {
-            if (context.performed)
-            {
-                pcShoot.HoldToFireSpecial();
-            }
+            if (_rightButton.performed) { pcShoot.HoldToUseRightArm(); }
         }
+
+        public void SpecialArmAction(InputAction.CallbackContext _middleButton)
+        {
+            if (_middleButton.performed) { pcShoot.HoldToUseSpecial(); }
+        }
+
+        #endregion
 
         //----------------------------movement
 
         public void GetMovementInput() => playerMovinput = moveAction.ReadValue<Vector2>();
 
-        public void ActivateBoost(InputAction _accelButton)
+        public void ActivateRunning(InputAction.CallbackContext _accelButton)
         {
-            if (!_accelButton.IsPressed())
+            switch (canRun)
             {
-                pcMov.currentMovement = Pc_Movement.MovementType.Walking;
+                case false: break;
+                case true:
+                    if (_accelButton.performed) { pcMov.isRunning = true; pcMov.SetMovementType(); }
+                    else if (_accelButton.canceled) { pcMov.isRunning = false; pcMov.SetMovementType(); }
+                    break; 
             }
-            else
+        }
+
+        public void ActivateBoost(InputAction.CallbackContext _boostButton)
+        {
+            switch (canBoost)
             {
-                pcMov.currentMovement = Pc_Movement.MovementType.Bursting;
+                case false: break;
+                case true:
+                    if      (_boostButton.performed) { pcMov.isBoosting = true; pcMov.SetMovementType(); }
+                    else if (_boostButton.canceled) { pcMov.isBoosting = false; pcMov.SetMovementType(); }
+                    break;
             }
         }
 
         public void ForwardVectorMovInput()
         {
-            switch (pcMov.currentMovement)
+            switch (canMove)
             {
-                case Pc_Movement.MovementType.Walking:
+                case false: break;
+                case true:
+                    switch (pcMov.currentMovement)
+                    {
+                        case Pc_Movement.MovementType.Walking:
 
+                            if (playerMovinput.y > 0.1f)
+                                                            { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.forwardWalk, 2); }
+                            else if (playerMovinput.y < (-0.1f))
+                                                            { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.backwardWalk, 2); }
+                            else
+                                                            { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.backwardWalk, 0); }
+
+                            break;
+
+                        case Pc_Movement.MovementType.Running:
                     if (playerMovinput.y > 0.1f)
-                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.forwardWalkPower, 3); }
-
+                                                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.forwardRun, 2); }
                     else if (playerMovinput.y < (-0.1f))
-                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.backwardWalkPower, 3); }
-
+                                                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.backwardRun, 2); }
                     else
-                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.backwardWalkPower, 0); }
-
+                                                    { pcMov.AccelInputValue(0, 0, 0); }
                     break;
 
-
-                case Pc_Movement.MovementType.Bursting:
+                        case Pc_Movement.MovementType.Boosting:
+                    
                     if (playerMovinput.y > 0.1f)
-                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.forwardBurstPower, 3); }
-
+                                                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.forwardBoost, 2); }
                     else if (playerMovinput.y < (-0.1f))
-                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.backwardWalkPower, 3); }
-
+                                                    { pcMov.AccelInputValue(playerMovinput.y, vamtSetting.backwardBoost, 2); }
                     else
-                    { pcMov.AccelInputValue(0, 0, 0); }
+                                                    { pcMov.AccelInputValue(0, 0, 0); }
                     break;
-
-
-
-                default:
-                    break;
+                    }
+                break;
             }
         }
 
         public void HorizontalVectorMovInput()
         {
-            switch (pcMov.currentMovement)
+            switch (canMove)
             {
-                case Pc_Movement.MovementType.Walking:
-                    pcMov.StrafeInputValue( playerMovinput.x,
-                                            vamtSetting.horizontalStrafePower,
-                                            3);
-                    break;
+                case false: break;
+                case true:
+                    switch (pcMov.currentMovement)
+                    {
+                        case Pc_Movement.MovementType.Walking:
+                            if (playerMovinput.x > 0.1f)
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeWalk, 2); }
+                            else if (playerMovinput.x < (-0.1f))
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeWalk, 2); }
+                            else
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeWalk, 0); }
+                            break;
 
+                        case Pc_Movement.MovementType.Running:
+                            if (playerMovinput.x > 0.1f)
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeRun, 2); }
+                            else if (playerMovinput.x < (-0.1f))
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeRun, 2); }
+                            else
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeRun, 0); }
+                            break;
 
-                case Pc_Movement.MovementType.Bursting:
-                    pcMov.StrafeInputValue( playerMovinput.x,
-                                            vamtSetting.horizontalBurstPower,
-                                            3);
-                    break;
-
-
-                default:
+                        case Pc_Movement.MovementType.Boosting:
+                            if (playerMovinput.x > 0.1f)
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeBoost, 2); }
+                            else if (playerMovinput.x < (-0.1f))
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeBoost, 2); }
+                            else
+                            { pcMov.StrafeInputValue(playerMovinput.x, vamtSetting.strafeBoost, 0); }
+                            break;
+                    }
                     break;
             }
         }
@@ -218,9 +256,12 @@ namespace ABZ_Pc
         {
             if (context.performed)
             {
-
+                pcData.gameIsRunning = false;
+                OnPauseGame.Raise();
             }
         }
+
+
         #endregion
     }
 }

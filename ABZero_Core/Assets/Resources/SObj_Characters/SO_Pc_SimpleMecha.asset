@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719450f2534d2a547979823a92bc4631, type: 3}
   m_Name: SO_Pc_SimpleMecha
   m_EditorClassIdentifier: 
-  backwardWalkPower: 7
-  forwardWalkPower: 8
-  forwardBurstPower: 11
-  horizontalStrafePower: 6
-  horizontalBurstPower: 10
-  pivotRotatioValue: 0.8
-  CamTurnSensitivity: 0.03
+  forwardWalk: 10
+  forwardRun: 14
+  forwardBoost: 20
+  backwardWalk: 6
+  backwardRun: 8
+  backwardBoost: 20
+  strafeWalk: 10
+  strafeRun: 14
+  strafeBoost: 20
+  bodyPivotRotNormal: 2
+  bodyPivotRotBoosting: 1
+  camPivotSensitivity: 0.06
+  maxStamina: 100

@@ -75,7 +75,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 50736f15ceb85bc42a3fd07f0ad4c547,
+    m_Motion: {fileID: -203655887218126122, guid: e4e8eb6cc2ddbec4688214df91f66ffb,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -96,7 +96,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: 0f9ba430bcb8c0c4da06742a04b58701,
       type: 3}
     m_Threshold: 0.16666667
-    m_Position: {x: 0, y: 8}
+    m_Position: {x: 0, y: 7}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -114,7 +114,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: 72ee9d18406c7d347b9934a9e949ca57,
       type: 3}
     m_Threshold: 0.33333334
-    m_Position: {x: 0, y: -8}
+    m_Position: {x: 0, y: -7}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -132,7 +132,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: e58e8359994a33342bb4f21e07611f6d,
       type: 3}
     m_Threshold: 0.5
-    m_Position: {x: -9, y: 0}
+    m_Position: {x: -7, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: VelForward
@@ -150,7 +150,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: fe72b4c62534a524fa0135c5cb858d6a,
       type: 3}
     m_Threshold: 0.6666667
-    m_Position: {x: 9, y: 0}
+    m_Position: {x: 7, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: VelForward
@@ -159,7 +159,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: e787f53d67ccfd14dae9fa1596cd07dd,
       type: 3}
     m_Threshold: 0.75
-    m_Position: {x: -5, y: 5}
+    m_Position: {x: -6, y: 6}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: VelForward
@@ -168,7 +168,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: 84d0ebfe34c0c0a41b3806a92e8c0cc5,
       type: 3}
     m_Threshold: 0.8333333
-    m_Position: {x: 5, y: 5}
+    m_Position: {x: 6, y: 6}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: VelForward
@@ -177,7 +177,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: 84d0ebfe34c0c0a41b3806a92e8c0cc5,
       type: 3}
     m_Threshold: 0.9166667
-    m_Position: {x: -5, y: -5}
+    m_Position: {x: -6, y: -6}
     m_TimeScale: -1
     m_CycleOffset: 0
     m_DirectBlendParameter: VelForward
@@ -186,7 +186,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: e787f53d67ccfd14dae9fa1596cd07dd,
       type: 3}
     m_Threshold: 1
-    m_Position: {x: 5, y: -5}
+    m_Position: {x: 6, y: -6}
     m_TimeScale: -1
     m_CycleOffset: 0
     m_DirectBlendParameter: VelForward

@@ -9,6 +9,7 @@ namespace ABZ_Pc
     {
         public Pc_References pcData;
 
+        #region MyRegion
 
         [Header("text refs")]
         public RawImage indicatorGreen;
@@ -16,41 +17,43 @@ namespace ABZ_Pc
         public RawImage indicatorYello;
         public RawImage indicatorRed;
 
+        #endregion
+
 
         private void Start()
         {
             if (!indicatorGreen.gameObject.activeInHierarchy)
-            {
-                indicatorGreen.gameObject.SetActive(true);
-            }
+                { indicatorGreen.gameObject.SetActive(true);}
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("colision");
-
-            if (collision.gameObject.CompareTag("EnemyBullet"))
+            switch (pcData.gameIsRunning)
             {
-                pcData.pcCtrl.hp--;
+                case false: break;
+                case true:
+                    if (collision.gameObject.CompareTag("EnemyBullet"))
+                        {
+                            pcData.pcCtrl.hp--;
 
-                if (pcData.pcCtrl.hp == 11) //Blue
-                {
-                    indicatorGreen.gameObject.SetActive(false);
-                    indicatorBlue.gameObject.SetActive(true);
-                }
-                else if (pcData.pcCtrl.hp <= 8 && pcData.pcCtrl.hp >= 5)
-                {
-                    indicatorBlue.gameObject.SetActive(false);
-                    indicatorYello.gameObject.SetActive(true);
-                }
-                else if (pcData.pcCtrl.hp <= 4 && pcData.pcCtrl.hp >= 0)
-                {
-                    indicatorYello.gameObject.SetActive(false);
-                    indicatorRed.gameObject.SetActive(true);
-                }
+                        if (pcData.pcCtrl.hp == 11) //Blue
+                        {
+                            indicatorGreen.gameObject.SetActive(false);
+                            indicatorBlue.gameObject.SetActive(true);
+                        }
+                        else if (pcData.pcCtrl.hp <= 8 && pcData.pcCtrl.hp >= 5)
+                        {
+                            indicatorBlue.gameObject.SetActive(false);
+                            indicatorYello.gameObject.SetActive(true);
+                        }
+                        else if (pcData.pcCtrl.hp <= 4 && pcData.pcCtrl.hp >= 0)
+                        {
+                            indicatorYello.gameObject.SetActive(false);
+                            indicatorRed.gameObject.SetActive(true);
+                        }
+                    }
+                break;
             }
-
-
         }
     }
 }

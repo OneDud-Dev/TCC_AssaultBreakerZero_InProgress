@@ -1,3 +1,5 @@
+using ABZ_GameSystems;
+using ABZ_Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +12,10 @@ namespace ABZ_Pc
         #region Variables
 
         public  Pc_References pcData;
-
         public bool isCameraMoving;
 
         private Pc_VAMT_SObj  playerConfig;
         private InputAction   mouseAction;
-
         private Transform camPivot;
         private Transform camTarget;
         private Transform mainPivot;
@@ -36,42 +36,32 @@ namespace ABZ_Pc
             mouseAction  = pcData.pcInput.actions["CamMovement"];
             
             playerConfig = pcData.vamtSettings;
-            camPivot     = pcData.camFollow;
-            camTarget    = pcData.camTarget;
+            camPivot     = pcData.mainCamFollow;
+            camTarget    = pcData.mainCamTarget;
             mainPivot    = pcData.mainPivot;
             sphereMovPos = pcData.sphereMov.transform;
             //screenSize = Screen.width;
-
         }
 
         private void Update()
         {
-            if (isCameraMoving)
+            switch (pcData.gameIsRunning)
             {
-                CameraPivotRotate(camPivot, turnVector);
+                case false: break;
+                case true:
+                    if (isCameraMoving)      {CameraPivotRotate(camPivot, turnVector); }
+                    break;
             }
-
-            //SetObjectPosition(camPivot, sphereMovPos);
-            //SetObjectPosition(camPivot, mainPivot);
-            //SetObjPosDamped(camPivot, mainPivot, camFollowDamping, CamFollowDampingSpeed);
         }
         #endregion
 
 
-        /* GetMouseMovement on update Depreciated, new method for UnityEvents on PlayerInput sucessfull
-        public Vector2  GetMouseMovement(InputAction input)
-        {
-            Vector2 value = input.ReadValue<Vector2>();
-        
-            return value;
-        }
-        */
 
 
         #region Methods
         //unity event
         public void GetMouseHorizontalDeltaValue() => 
-            turnVector += (float)mouseAction.ReadValue<Vector2>().x * playerConfig.CamTurnSensitivity;
+            turnVector += (float)mouseAction.ReadValue<Vector2>().x * playerConfig.camPivotSensitivity;
 
 
         //transform methods

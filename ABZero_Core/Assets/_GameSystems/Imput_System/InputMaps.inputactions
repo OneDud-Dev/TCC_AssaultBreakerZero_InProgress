@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "BoostAction",
+                    "type": "Button",
+                    "id": "58dc93cc-21da-4491-8357-f673ac3c453c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ReloadAction",
                     "type": "Button",
                     "id": "ada71581-5d8f-46a8-8b01-52d0caa83e83",
@@ -288,6 +297,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f3855a0-c16e-4a8f-b226-9a0c3b88651a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BoostAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

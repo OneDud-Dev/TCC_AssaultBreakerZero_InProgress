@@ -50,27 +50,17 @@ namespace ABZ_Ai
 
         }
 
+        
+
         #endregion
 
 
 
 
         #region Ctrl Methods
-        private void IfEnemiesChangeToAttack()
-        {
-            if (aiCombt.enemyTargets == null || aiCombt.enemyTargets.Count <= 0) { return; }
-            else if (aiCombt.enemyTargets.Count > 0) { currentState = aiState.Attacking; }
+        
 
-        }  //change to attacking enemy if list of enemies change
-        private void IfNoEnemtChangeToTraveling()
-        {
-            if (aiCombt.enemyTargets == null || aiCombt.enemyTargets.Count <= 0)
-            { currentState = aiState.Traveling; }
-        }
-
-
-
-        public void aiDisabled()
+        public void aiDestroyed()
         {
             data.aiRoot.SetActive(false);
         }

@@ -24,10 +24,13 @@ namespace ABZ_Projectiles
             bulletRB.velocity = transform.forward * bullletSpeed;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
             Destroy(this.gameObject);
+            //send bullet damage data?
         }
+
+
 
         private void FixedUpdate()
         {

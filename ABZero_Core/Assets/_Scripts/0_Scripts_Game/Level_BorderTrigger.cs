@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ABZCore
+namespace ABZ_GameSystems
 {
     public class Level_BorderTrigger : MonoBehaviour
     {

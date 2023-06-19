@@ -1,3 +1,4 @@
+using ABZ_GameSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace ABZ_Ai
 
         [SerializeField]
         private Ai_References aiData;
-
+        public  Game_Events   OnAiDestroyed;
 
 
 
@@ -17,11 +18,11 @@ namespace ABZ_Ai
         {
             aiData.hP -= dmge;
             
-            if (aiData.hP <= 0)     {onBeingDestroyed();}
-            else                    {DamageStagger();   }
+            if (aiData.hP <= 0)     {OnZeroHP();}
+            else                    {OnDamageReaction();   }
         }
 
-        private void DamageStagger()
+        private void OnDamageReaction()
         {
             /* spawn hit particles
              * small shake to character torso bone, springlike
@@ -30,12 +31,10 @@ namespace ABZ_Ai
         }
         
         
-        private void onBeingDestroyed()
+
+        private void OnZeroHP()
         {
-            /* spawn explosion
-             * send event to add enemy destroyed count to level controller
-             * desable ai
-             */
+            OnAiDestroyed.Raise(this, aiData.AiReference);
         }
     }
 }

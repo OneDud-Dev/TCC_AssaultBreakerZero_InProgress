@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ABZCore
+namespace ABZ_GameSystems
 {
     [CreateAssetMenu(menuName = "NewGameEvent")]
     public class Game_Events : ScriptableObject
@@ -10,12 +10,21 @@ namespace ABZCore
         
         public List<Game_EventListener> eventListeners = new List<Game_EventListener>();
 
+        public void Raise()
+        {
+            for (int i = 0; i < eventListeners.Count; i++)
+            { eventListeners[i].OnEventRaised(); }
+        }
+        
         public void Raise(Component _sender, object _data)
         {
             for (int i = 0; i < eventListeners.Count; i++)
             { eventListeners[i].OnEventRaised(_sender, _data);}
         }
 
+       
+
+        #region Listener registration
 
         public void RegisterListener(Game_EventListener _listener)
         {
@@ -29,5 +38,7 @@ namespace ABZCore
                 {eventListeners.Remove(_listener);}
         }
 
+
+        #endregion
     }
 }

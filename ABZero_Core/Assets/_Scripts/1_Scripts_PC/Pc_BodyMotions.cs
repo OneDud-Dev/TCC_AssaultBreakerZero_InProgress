@@ -15,7 +15,7 @@ namespace ABZ_Pc
 
         #region Variables
         public Pc_References pcData;
-        public bool playerMotionGismos;
+
 
         [Header("Offsets")]
         public Vector3 bodyOffset;
@@ -51,54 +51,54 @@ namespace ABZ_Pc
 
 
 
+        #region Unity
         private void Start()
         {
             pcVamtOptions = pcData.vamtSettings;
             //others
             sphereMov       = pcData.sphereMov.transform;
-            cameraFollow    = pcData.camFollow;
-            mainPivot       = pcData.mainPivot; //read only
+            cameraFollow    = pcData.mainCamFollow;
+            mainPivot       = pcData.mainPivot;//read only
             //body
             bodyRootPos     = pcData.playerBodyRoot;
-            upperBody       = pcData.upperBody;
-            lowerBody       = pcData.lowerBody;
             //rigs
-            rightArmRig     = pcData.rightArmPivot;
-            rightArmTarget  = pcData.rightArmTarget;
-            leftArmRig      = pcData.leftArmPìvot;
-            leftArmTarget   = pcData.leftArmTarget;
-            rightLegTarget  = pcData.rightLegTarget;
-            leftLegTarget   = pcData.leftLegTarget;
-
-
+            
         }
-
 
         private void Update()
         {
-            legDirection = new Vector3(pcData.sphereMov.velocity.x ,     0 ,
-                                       pcData.sphereMov.velocity.z);
+            switch (pcData.gameIsRunning)
+            {
+                case false: break;
+                case true:
+                    legDirection = new Vector3(pcData.sphereMov.velocity.x , 0 ,
+                                               pcData.sphereMov.velocity.z);
 
-            SetObjectPosition(bodyRootPos, sphereMov);
-            SetObjectPosition(mainPivot,   sphereMov);
-            RotateObjOverTime(mainPivot, cameraFollow, 1);
-            RotateObjOverTime(bodyRootPos, mainPivot, pcVamtOptions.pivotRotatioValue);
-
-            /*
-            //SetObjectPosition(cameraFollow,sphereMov);
-
-            //SetObjPosDamped(bodyRootPos, sphereMov, BodyDampingVel, 1);
-            //SetObjPosDamped(mainPivot,   sphereMov, ref 1,1);=========================================================
-
-            //RotateObjOverTime(lowerBody, legDirection); //needs smooth / damping
-            */
+                    SetObjectPosition(mainPivot,   sphereMov);
+                    SetObjectPosition(bodyRootPos, mainPivot, bodyOffset);
+                    RotateObjOverTime(mainPivot, cameraFollow, 1);
+                    RotateObjOverTime(bodyRootPos, mainPivot, pcVamtOptions.bodyPivotRotNormal);
+                    
+                    
+                    break;
+            }
         }
 
         private void FixedUpdate()
         {
-            SetObjPosDamped(cameraFollow, mainPivot, dampingCameraVector, 5f);
-            
+            switch (pcData.gameIsRunning)
+            {
+                case false: break;
+                case true:
+                    SetObjPosDamped(cameraFollow, mainPivot, dampingCameraVector, 5f);
+
+                    break;
+            }
         }
+
+        #endregion
+
+
 
 
         #region SetPosition 

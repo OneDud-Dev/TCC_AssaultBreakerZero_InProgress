@@ -12,8 +12,7 @@ namespace ABZ_Pc
 
         #region Variables
 
-        public bool debugMessages;
-        public bool MovGismos;
+        public bool isRunning;
         public bool isBoosting;
 
         #region References
@@ -22,29 +21,29 @@ namespace ABZ_Pc
         private Transform forwardReference;
         private Transform lowerBody;
         private Rigidbody sphereMov;
-        //public  Rigidbody rbBodyVelocity;
+      //public  Rigidbody rbBodyVelocity;
         private Transform pivotPos;
 
         #endregion
 
         #region Enums
-        public enum MovementType { Walking, Bursting }
+        public enum MovementType { Walking, Running, Boosting }
         public enum verticality { Grounded, Suspended }
         #endregion
 
         #region MovementData
 
         [Header("Movement Status")]
-                         public MovementType currentMovement;
-                         public verticality  currentVerticalStatus;
-                         public LayerMask    groundLayer;
-        [SerializeField] private float groundCheckLength;
+        public MovementType currentMovement;
+        public verticality  currentVerticalStatus;
+        public LayerMask    groundLayer;
+        public float        groundCheckLength;
 
         [Header("Velocity on each axis")]
-                        public Vector3 ForwardLateralVertical;
+        public Vector3 ForwardLateralVertical;
         
         [Header("Movement forces")]
-
+        //input value received by pcCtrl
         [SerializeField] private float forwardForce;
         [SerializeField] private float horizontalForce;
         [SerializeField] private float downwardForce;
@@ -52,11 +51,11 @@ namespace ABZ_Pc
 
 
         [Header("Movement Value")]
-                         public bool  isCalculatingSpeed;
-                         public float currentSpeed;
-                       //public float currentVerticalSpeed; Deprecieted
-                         public float currentAltitudeValue;
-                         public float currentAngleValue;
+        public bool  isCalculatingSpeed;
+        public float currentSpeed;
+      //public float currentVerticalSpeed; Deprecieted
+        public float currentAltitudeValue;
+        public float currentAngleValue;
         #endregion
 
         #endregion
@@ -71,9 +70,9 @@ namespace ABZ_Pc
             pcData.pcCtrl.isPlaying = true;
             isCalculatingSpeed      = true;
 
-            sphereMov   = pcData.sphereMov;
-            forwardReference  = pcData.playerBodyRoot;
-            pivotPos    = pcData.mainPivot;
+            sphereMov           = pcData.sphereMov;
+            forwardReference    = pcData.normalControlForward;
+            pivotPos            = pcData.mainPivot;
 
             StartCoroutine(ICalculateSpeed());
         }
@@ -87,83 +86,84 @@ namespace ABZ_Pc
         #region Unity Calculations
         private void Update()
         {
-            /*body related movement will be controlled by Pc_BodyMotion
-            // 
-            //FollowSphereCollider(playerBody, sphereMov.transform, bodyOffset);
-            //FollowSphereCollider(pivotPos, sphereMov.transform, pivotOffset);
-            */
+            switch (pcData.gameIsRunning)
+            {
+                case false:
+                    break;
+                case true:
+                    CheckIfIsGrounded(currentAltitudeValue, groundCheckLength);
+                    ActivateSpeedCalculation();// calculate speed data for amny references
 
-            CheckIfIsGrounded(currentAltitudeValue, groundCheckLength);
-            ActivateSpeedCalculation();// calculate speed data for amny references
+                    break;
+            }
         }
+
 
 
         private void FixedUpdate()
         {
-            currentAltitudeValue = GetAltitude(sphereMov.position, -pivotPos.up);
-
-            //CustomGravity(sphereMov, pcData.camPivot, 10, 30);
-
-
-            //appliyng values to rigidybody
-            switch (currentVerticalStatus)
+            switch (pcData.gameIsRunning)
             {
-                case Pc_Movement.verticality.Grounded:
-                    switch (currentMovement)
+                case false:
+                    break;
+                case true:
+
+                    currentAltitudeValue = GetAltitude(sphereMov.position, -pivotPos.up);
+
+                    //movement calculations
+                    switch (currentVerticalStatus)
                     {
-                        case Pc_Movement.MovementType.Walking:
-                            ForwardMovement (sphereMov, forwardReference, forwardForce);
-                            StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                            //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
-                            isBoosting = false;
+                        case Pc_Movement.verticality.Grounded:
+                            switch (currentMovement)
+                            {
+                                case Pc_Movement.MovementType.Walking:
+                                    ForwardMovement (sphereMov, forwardReference, forwardForce);
+                                    StrafeMovement  (sphereMov, forwardReference, horizontalForce);
+                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                    break;
+
+                                case Pc_Movement.MovementType.Running:
+                                    ForwardMovement (sphereMov, forwardReference, forwardForce);
+                                    StrafeMovement  (sphereMov, forwardReference, horizontalForce);
+                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                    break;
+                                case Pc_Movement.MovementType.Boosting:
+                                    ForwardMovement(sphereMov, forwardReference, forwardForce);
+                                    StrafeMovement(sphereMov, forwardReference, horizontalForce);
+                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                    break;
+                            }
                             break;
 
+                       //------------------------------------------------------------------------------------------------
+                        case Pc_Movement.verticality.Suspended:
+                            switch (currentMovement)
+                            {
+                                case Pc_Movement.MovementType.Walking:
+                                    ForwardMovement (sphereMov, forwardReference, forwardForce);
+                                    StrafeMovement  (sphereMov, forwardReference, horizontalForce);
+                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                    break;
 
+                                case Pc_Movement.MovementType.Running:
+                                    ForwardMovement (sphereMov, forwardReference, forwardForce);
+                                    StrafeMovement  (sphereMov, forwardReference, horizontalForce);
+                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                    isBoosting = true;
+                                    break;
 
-                        case Pc_Movement.MovementType.Bursting:
-                            ForwardMovement (sphereMov, forwardReference, forwardForce);
-                            StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                            //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
-                            isBoosting = true;
-                            break;
-                        default:
+                                case Pc_Movement.MovementType.Boosting:
+                                    ForwardMovement(sphereMov, forwardReference, forwardForce);
+                                    StrafeMovement(sphereMov, forwardReference, horizontalForce);
+                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                    break;
+                            }
+
+                            //------------------------------------------------------------------------------------------------
                             break;
                     }
-                    break;
-
-                //------------------------------------------------------------------------------------------------
-                case Pc_Movement.verticality.Suspended:
-                    switch (currentMovement)
-                    {
-                        case Pc_Movement.MovementType.Walking:
-                            ForwardMovement (sphereMov, forwardReference, forwardForce);
-                            StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                            //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
-                            isBoosting = false;
-                            break;
-
-
-
-                        case Pc_Movement.MovementType.Bursting:
-                            ForwardMovement (sphereMov, forwardReference, forwardForce);
-                            StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                            //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
-                            isBoosting = true;
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    //------------------------------------------------------------------------------------------------
-                    break;
-                default:
-
-                    break;
+                break;
             }
-
-
-
         }
 
         #endregion
@@ -177,6 +177,19 @@ namespace ABZ_Pc
 
 
         #region MovementRelatedFunctions
+
+        public void SetMovementType()
+        {
+            if (isRunning && !isBoosting)
+            {
+                currentMovement = MovementType.Running;
+            }
+            else if (isBoosting)
+            {
+                currentMovement = MovementType.Boosting;
+            }
+            else { currentMovement = MovementType.Walking;}
+        }
         //||||||||||||||||||||||||||||||||||||||||||||FORWARD||||||||||||||||||||||||||||||||||||||||||||||||||||\\
 
         /// <summary>
@@ -285,7 +298,22 @@ namespace ABZ_Pc
                 currentVerticalStatus = verticality.Suspended;
             }
         }
+        public float GetAltitude(Vector3 origin, Vector3 upDirection)
+        {
+            RaycastHit hit;
+            Ray _ray = new Ray(origin, upDirection);
 
+            float _autitude;
+
+            if (Physics.Raycast(_ray, out hit, groundLayer))
+            {
+                _autitude = hit.distance;
+                return _autitude;
+            }
+            else
+                return 20f;
+        }
+      
         public void CustomGravity(Rigidbody _sphereRb, Transform _downwardDir, float _groundedAccel, float _suspendedAccel)
         {
             switch (currentVerticalStatus)
@@ -305,9 +333,6 @@ namespace ABZ_Pc
                     break;
             }
         }
-
-
-
         public float GetDownwardForce(AnimationCurve _curveValue, float _altitudeValue, int _multiplier)
         {
             float downwardMov = _curveValue.Evaluate(_altitudeValue) * _multiplier;
@@ -315,27 +340,6 @@ namespace ABZ_Pc
             return downwardMov;
         }
 
-        public float GetAltitude(Vector3 origin, Vector3 upDirection)
-        {
-            RaycastHit hit;
-            Ray _ray = new Ray(origin, upDirection);
-
-            float _autitude;
-
-            if (Physics.Raycast(_ray, out hit, groundLayer))
-            {
-                if (MovGismos)
-                {
-                    Debug.DrawLine(sphereMov.position, hit.point, Color.yellow);
-                }
-
-                _autitude = hit.distance;
-                return _autitude;
-            }
-            else
-                return 20f;
-
-        }
 
 
 
@@ -346,13 +350,13 @@ namespace ABZ_Pc
 
         private void ActivateSpeedCalculation()
         {
-            if (isCalculatingSpeed && pcData.pcCtrl.isPlaying)
+            if (isCalculatingSpeed && pcData.gameIsRunning)
             {   return;   }
 
-            else if (isCalculatingSpeed && !pcData.pcCtrl.isPlaying)
+            else if (isCalculatingSpeed && !pcData.gameIsRunning)
             {   isCalculatingSpeed = false;   }
 
-            else if (!isCalculatingSpeed && pcData.pcCtrl.isPlaying)
+            else if (!isCalculatingSpeed && pcData.gameIsRunning)
             {   isCalculatingSpeed = true;
                 StartCoroutine(ICalculateSpeed());  }
         }
@@ -367,23 +371,6 @@ namespace ABZ_Pc
                    (float)Math.Round(pivotPos.InverseTransformDirection(sphereMov.velocity).z, 3) );
 
                 yield return null;
-                
-
-                /*
-                Vector3 prevPos = transform.InverseTransformDirection(pivotPos.localPosition);
-
-                yield return new WaitForFixedUpdate();
-
-                ForwardLateralVertical = new Vector3
-                (
-                (float)Math.Round (transform.InverseTransformVector(pivotPos.position).x - prevPos.x, 3),
-                (float)Math.Round (transform.InverseTransformVector(pivotPos.position).y - prevPos.y, 3),
-                (float)Math.Round (transform.InverseTransformVector(pivotPos.position).z - prevPos.z, 3)
-                ) / Time.fixedDeltaTime;
-
-
-                currentSpeed = (Vector3.Distance(pivotPos.position, prevPos) / Time.fixedDeltaTime);
-                */
             }
         }
 

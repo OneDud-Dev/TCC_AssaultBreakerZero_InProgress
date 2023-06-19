@@ -35,12 +35,18 @@ namespace ABZ_Ai
             switch (aiCtrl.thisAttitudeType)
             {
                 case Ai_Controller.aiTravelType.Chaser:
-                    ChaserLookForEnemy(other);
+                    if (other.gameObject.CompareTag("ETargetChar")      ||
+                        other.gameObject.CompareTag("ETargetBuilding")  ||
+                        other.gameObject.CompareTag("ETargetObjective"))
+                    
+                    {ChaserLookForEnemy(other);}
                     break;
 
 
                 case Ai_Controller.aiTravelType.Focused:
-                    FocusedLookForTarget(other);
+                    if (other.gameObject.CompareTag("ETargetObjective"))
+                    
+                    {FocusedLookForTarget(other);}
                     break;
 
 
@@ -69,14 +75,8 @@ namespace ABZ_Ai
                 { return; }
                 else
                 {
+                    aiCombat.currentTarget = _char.gameObject;
                     aiCombat.enemyTargets.Add(_char.gameObject);
-
-                    /*mudar o alvo da IA para jogador a primeira vista, mal implementado
-                    if (_char.CompareTag("Player"))
-                    {
-                        aiCombat.enemyTargets.RemoveAt(0);
-                    }
-                    */
                 }
             }
         }
@@ -103,6 +103,7 @@ namespace ABZ_Ai
         {
             //chase then return
         }
+
 
     }
 }

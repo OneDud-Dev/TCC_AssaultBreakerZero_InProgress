@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Projectile_A
+  - Projectile_P
+  - Projectile_E
+  - ETargetObjective
+  - ETargetChar
+  - ETargetLimbs
+  - ATargetObjective
+  - ATargetChar
+  - ATargetLimbs
+  - ATargetBuild
   layers:
   - Default
   - TransparentFX
@@ -16,13 +26,13 @@ TagManager:
   - Characters
   - Buildings
   - VisualsOnly
-  - EnemyObjective
+  - 
   - 
   - Minimap
   - GetTarget
   - Triggers
   - Bounds
-  - Scripts
+  - 
   - 
   - 
   - 

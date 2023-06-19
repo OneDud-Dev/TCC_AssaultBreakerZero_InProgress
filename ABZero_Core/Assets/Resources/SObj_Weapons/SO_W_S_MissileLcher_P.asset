@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15105fde52beb948bc1fbd1fea13068, type: 3}
   m_Name: SO_W_S_MissileLcher_P
   m_EditorClassIdentifier: 
-  baseDamage: 0
-  maxAmmo: 0
-  magazineSize: 0
-  rateOfFire: 0
-  reloadTime: 0
-  projectile: {fileID: 0}
+  baseDamage: 10
+  maxAmmo: 4
+  magazineSize: 4
+  rateOfFire: 1.4
+  reloadTime: 5
+  projectile: {fileID: 3540957754004967262, guid: 6932f334749e4f84cbd3763b294faa8c,
+    type: 3}
