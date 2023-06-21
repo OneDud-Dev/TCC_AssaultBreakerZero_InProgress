@@ -49,13 +49,13 @@ namespace ABZ_Projectiles
         private void OnTriggerEnter(Collider other)
         {
             Instantiate(explosionParticle, other.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 0.05f);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             Instantiate(explosionParticle, collision.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 0.05f); ;
         }
 
 

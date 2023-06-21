@@ -363,6 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletRB: {fileID: 6691710415046692963}
+  hitBulletParticle: {fileID: 233744057873081493, guid: 52ae87ae679cf8749a72f8e50c3f663d,
+    type: 3}
   bullletSpeed: 60
 --- !u!1 &7874845555193062341
 GameObject:

@@ -9,6 +9,7 @@ namespace ABZ_Projectiles
         #region Variables
 
         public Rigidbody bulletRB;
+        public GameObject hitBulletParticle;
 
         public float bullletSpeed = 60f;
         #endregion
@@ -26,11 +27,17 @@ namespace ABZ_Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
+            GameObject bulletHit = Instantiate(hitBulletParticle, transform.position, transform.rotation);
             Destroy(this.gameObject);
             //send bullet damage data?
         }
 
-
+        private void OnCollisionEnter(Collision collision)
+        {
+            Debug.Log("bullethit");
+            GameObject bulletHit = Instantiate(hitBulletParticle, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+        }
 
         private void FixedUpdate()
         {

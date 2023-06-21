@@ -6,16 +6,15 @@ namespace ABZ_GameSystems
 {
     public class Game_Controller : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
-        void Update()
+
+        //make singleton
+
+
+        private void Start()
         {
-        
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
