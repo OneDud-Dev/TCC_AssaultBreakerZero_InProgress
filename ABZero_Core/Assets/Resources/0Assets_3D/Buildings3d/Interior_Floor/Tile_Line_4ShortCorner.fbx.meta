@@ -3,7 +3,22 @@ guid: 77a127f893a7428448dfdda34d9794d3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BottonFloor
+    second: {fileID: 2100000, guid: e7070963902f2e942a12cfb8da79ba85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SlopeFloor
+    second: {fileID: 2100000, guid: 785ae6a8909882c4782bf447dc69c9e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopFloor
+    second: {fileID: 2100000, guid: 4480307e5177b1f49af21696728bf991, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

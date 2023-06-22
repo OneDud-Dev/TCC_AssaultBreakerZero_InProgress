@@ -3,7 +3,22 @@ guid: 32fe14e2cd92c0845bf0bbe6eab216c4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallCurved1.001
+    second: {fileID: 2100000, guid: 4ed5407efec2986409c52cf7927634ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallCurvedLInside.001
+    second: {fileID: 2100000, guid: bbc77d5b3427d974481361f9615d10c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallcurvedTop.001
+    second: {fileID: 2100000, guid: a00d6d47031bc9048a86e3a518ea0852, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

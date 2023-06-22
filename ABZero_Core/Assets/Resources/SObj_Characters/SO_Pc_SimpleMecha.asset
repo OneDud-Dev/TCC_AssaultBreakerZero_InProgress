@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719450f2534d2a547979823a92bc4631, type: 3}
   m_Name: SO_Pc_SimpleMecha
   m_EditorClassIdentifier: 
-  forwardWalk: 10
-  forwardRun: 14
-  forwardBoost: 20
+  forwardWalk: 12
+  forwardRun: 16
+  forwardBoost: 24
   backwardWalk: 6
   backwardRun: 8
   backwardBoost: 20

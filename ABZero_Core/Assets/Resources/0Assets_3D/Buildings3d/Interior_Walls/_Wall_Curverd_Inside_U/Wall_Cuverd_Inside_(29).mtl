@@ -1,0 +1,24 @@
+newmtl Wall_Cuverd_Inside_Lines
+map_Pm -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurvedLInside_Metallic.1001.png
+bump -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurvedLInside_Normal.1001.png
+disp -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurvedLInside_Roughness.1001.png
+map_Kd -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurvedLInside_BaseColor.1001.png
+Kd 1 1 1
+d 1
+
+newmtl Wall_Cuverd_Inside_top
+map_Pm -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallcurvedTop_Metallic.1001.png
+bump -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallcurvedTop_Normal.1001.png
+disp -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallcurvedTop_Roughness.1001.png
+map_Kd -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallcurvedTop_BaseColor.1001.png
+Kd 1 1 1
+d 1
+
+newmtl Wall_Cuverd_Inside_Main
+map_Pm -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurved1_Metallic.1001.png
+bump -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurved1_Normal.1001.png
+disp -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurved1_Roughness.1001.png
+map_Kd -o 0 0 -s 1 1 D:/Projects/UnityProjects/TCC_AssaultBreakerZero/ABZero_Core/Assets/Resources/0Assets_3D/Buildings3d/Interior_Walls/Wall_Cuverd_Inside/Wall_Cuverd_Inside_WallCurved1_BaseColor.1001.png
+Kd 1 1 1
+d 1
+

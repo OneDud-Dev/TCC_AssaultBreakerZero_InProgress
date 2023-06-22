@@ -3,7 +3,17 @@ guid: 5f9f9b3194190ea4888b4e1a1a8b9801
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ElevatorGearsMain
+    second: {fileID: 2100000, guid: 2b7f7c60166c86e4fb1939d369968736, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ElevetorGearShaft
+    second: {fileID: 2100000, guid: 5c5ff4bb85d5c2a4097bbd0a45b302fb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

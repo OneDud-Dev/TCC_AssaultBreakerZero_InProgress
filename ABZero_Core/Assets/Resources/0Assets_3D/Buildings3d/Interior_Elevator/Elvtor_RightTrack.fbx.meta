@@ -3,7 +3,12 @@ guid: 1e9fa220d3db7d442a18042543d4edf0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Elevatortracks
+    second: {fileID: 2100000, guid: 97e4bd7cc15ab0845bcb749b48ef2169, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

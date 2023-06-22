@@ -3,7 +3,17 @@ guid: 3c1518dff78f63f489c3a39768aa0a22
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ElevatorGuard
+    second: {fileID: 2100000, guid: 0ca8f35ae25dcd34e80f8a446b4d1b19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopFloor
+    second: {fileID: 2100000, guid: 2357af52c3afad84e8c75f7a825bf425, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

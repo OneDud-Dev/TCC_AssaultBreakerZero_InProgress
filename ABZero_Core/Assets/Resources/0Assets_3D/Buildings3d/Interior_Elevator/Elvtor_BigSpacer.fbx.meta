@@ -3,7 +3,12 @@ guid: 042d65dd797d7ce45a36ed89d8e6001b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ElevatorBigGuardRail
+    second: {fileID: 2100000, guid: 9ceae96828ce0bd49b4a3cc1acf6bbb2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
