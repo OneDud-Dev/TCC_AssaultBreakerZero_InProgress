@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/01_StartScreen.unity
     guid: 97d0e8f0ba6a5864990bfb04969b8b69
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/02_MissionBriefingStart.unity
     guid: 4730ebb209d0cfb40b301c1ccf5063e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/03_MissionDebriefingEnd.unity
     guid: 41db4490e9972e74eb2103bc73042179
   - enabled: 1

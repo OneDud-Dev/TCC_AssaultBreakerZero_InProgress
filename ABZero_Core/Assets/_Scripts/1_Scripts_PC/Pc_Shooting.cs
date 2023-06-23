@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABZ_Weapons;
-
+using ABZ_GameSystems;
 
 namespace ABZ_Pc
 {
     public class Pc_Shooting : MonoBehaviour
     {
         public   Pc_References   pcData;
+        public   Game_Events     onBulletShot;
+        public   Game_Events     onMissileShot;
+        public   Game_Events     onDefending;
         private  Pc_AutoTarget   pcTarget;
        
 
         #region Variables
 
-                 BaseEquipment      equippedLeft;
-                 BaseEquipment      equippedRight;
-                 BaseEquipment      equippedSpecial;
+                 BaseEquipment   equippedLeft;
+                 BaseEquipment   equippedRight;
+                 BaseEquipment   equippedSpecial;
 
         #region ENUMS
 
@@ -343,7 +346,8 @@ namespace ABZ_Pc
         }
 
 
-
+        public void EventTurnOnLeftArm() => leftIsActive = true;
+        public void EventTurnOffLeftArm() => leftIsActive = false;
         #endregion
 
 

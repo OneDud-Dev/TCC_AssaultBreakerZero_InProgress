@@ -9,11 +9,15 @@ namespace ABZ_Ui
     public class Ui_HUD_Targets : MonoBehaviour
     {
         #region Variables
+        public bool isNotEnemy;
         public bool targetIsActive;
         public TargetType thisTargetType;
         public enum TargetType { Main, next, recognized }
 
+        [Header("EventReferences")]
+        public Game_Events onTargetDestroyed;
 
+        [Header("AiReferences")]
         public Transform mainCam;
         public GameObject currentTarget;
 
@@ -28,6 +32,11 @@ namespace ABZ_Ui
         {
             if (!targetIsActive) { return; }
             else                 { PoinToCam(mainCam, currentTarget); }
+        }
+
+        private void OnDisable()
+        {
+            
         }
 
         public void ActivateTargets(Ui_HUD_Targets _thisComponent, TargetType _thisTarget)
@@ -54,6 +63,7 @@ namespace ABZ_Ui
             targetIsActive = false;
             currentTarget.SetActive(false);
             currentTarget = null;
+
         }
 
         public void ChangeTargetType(TargetType _newType)
@@ -78,7 +88,7 @@ namespace ABZ_Ui
             _hudTarget.transform.rotation = Quaternion.LookRotation(hudCanvasDirection);
         }
 
-        public void SetCamTransformFromEvent(Component _sender, object _camera)
+        public void GetCamTransformFromEvent(Component _sender, object _camera)
         {
             mainCam =  (Transform)_sender;
         }

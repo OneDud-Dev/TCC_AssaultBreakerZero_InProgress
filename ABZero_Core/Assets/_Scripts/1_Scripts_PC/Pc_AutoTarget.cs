@@ -105,11 +105,21 @@ namespace ABZ_Pc
             //This method has to be called by event when any enemy is destroyed
         }
 
-        public void OnEventEnemyDestroyed(GameObject _enemy)
+        public void OnEventEnemyDestroyed(Component sender, object _enemy)
         {
+            GameObject enemy = (GameObject)_enemy;
+            
+            if (!enemiesOnRange.Contains(enemy))
+            { return; }//se não tiver, voltar
 
+            else
+            {
+                if (currentTarget == enemy) { currentTarget = null; }
+                if (closestTarget == enemy) { closestTarget = null; }
+                enemy.GetComponent<Ui_HUD_Targets>().DeactivateTargets();
+                enemiesOnRange.Remove(enemy);
+            }
         }
-        
         private void GetClosestEnemy(Transform playerPos)
         {
             float distanceTtoP;

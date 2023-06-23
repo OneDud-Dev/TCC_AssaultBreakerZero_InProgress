@@ -26,17 +26,12 @@ namespace ABZ_Ui
 
         #region Unity
 
-        private void Awake()
-        {
-
-        }
-
 
         private void Start()
         {
             //tempoDePartidaString = "00:00:00";
 
-            tempoEstaPassando = false;
+            tempoEstaPassando = true;
         }
 
         #endregion

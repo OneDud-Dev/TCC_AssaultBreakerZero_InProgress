@@ -14,6 +14,9 @@ TagManager:
   - ATargetChar
   - ATargetLimbs
   - ATargetBuild
+  - Proj_P_B
+  - Proj_P_M
+  - Proj_P_S
   layers:
   - Default
   - TransparentFX

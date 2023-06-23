@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 namespace ABZ_Ui
 {
@@ -56,6 +57,11 @@ namespace ABZ_Ui
             TurnOnCanvas(Cvs_Start);
         }
 
+        public void Bton_Exit()
+        {
+            Application.Quit();
+        }
+
         #endregion
 
         #region Socials
@@ -102,17 +108,17 @@ namespace ABZ_Ui
         #region ChapterSelect
         public void LoadLvl1()
         {
-
+            SceneManager.LoadScene("04_lvl_1_1_TrainingDay_Underground");
         }
         public void LoadLvl2()
         {
-
+            SceneManager.LoadScene("");
         }
         
         #endregion
     
 
-        public void TurnOnCanvas(Canvas cvs) => cvs.gameObject.SetActive(true);
-        public void TurnOffCanvas(Canvas cvs) => cvs.gameObject.SetActive(false);
+        private void TurnOnCanvas(Canvas cvs) => cvs.gameObject.SetActive(true);
+        private void TurnOffCanvas(Canvas cvs) => cvs.gameObject.SetActive(false);
     }
 }
