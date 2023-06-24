@@ -125,17 +125,26 @@ namespace ABZ_Pc
         #region attack Actions
         public void LeftArmAction(InputAction.CallbackContext _leftButton)
         {
-            if (_leftButton.performed) { pcShoot.HoldToUseLeftArm(); }
+            if (!pcData.leftOverride)
+            {
+                if (_leftButton.performed) { pcShoot.HoldToUseLeftArm(); }
+            }
         }
 
         public void RightArmAction(InputAction.CallbackContext _rightButton)
         {
-            if (_rightButton.performed) { pcShoot.HoldToUseRightArm(); }
+            if (!pcData.rightOverride)
+            {
+                if (_rightButton.performed) { pcShoot.HoldToUseRightArm(); }
+            }
         }
 
         public void SpecialArmAction(InputAction.CallbackContext _middleButton)
         {
-            if (_middleButton.performed) { pcShoot.HoldToUseSpecial(); }
+            if (!pcData.specialOverride)
+            {
+                if (_middleButton.performed) { pcShoot.HoldToUseSpecial(); }
+            }
         }
 
         #endregion

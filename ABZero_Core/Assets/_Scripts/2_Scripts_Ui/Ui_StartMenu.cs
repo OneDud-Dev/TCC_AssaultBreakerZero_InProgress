@@ -17,7 +17,11 @@ namespace ABZ_Ui
         public Canvas Cvs_ChapterSelect;
 
 
-
+        private void Start()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 
 
         #region Screen Changers

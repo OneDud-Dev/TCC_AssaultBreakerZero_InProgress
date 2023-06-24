@@ -17,7 +17,7 @@ namespace ABZ_Dialogues
 
         [Header("CurrentDialogueState")]
         public DialogueState StartThisDialogue;
-        public enum DialogueState {NotYet , Started, Range, Defended, Fliped, Exploded, SawElevator, ArrivedGate, GateOpened, GotOutside }
+        public enum DialogueState {NotYet , Started, Range, Defended, Fliped, Exploded, AttackSounds, SawElevators, ArrivedGate, GateOpened, GotOutside }
 
         [Header("text reference")]
         public TextMeshProUGUI txtDialogueBox;
@@ -34,7 +34,7 @@ namespace ABZ_Dialogues
         public string[] arrivedAtGatesLines;        //     7
         public string[] gateOpenLines;              //     8
         public string[] outsideLines;               //     9
-
+        public string[] elevator2Lines;             //     10
         #endregion
 
 
@@ -51,7 +51,7 @@ namespace ABZ_Dialogues
         public int atGateIndex;
         public int pastGateIndex;
         public int outsideIndex;
-
+        public int elvtor2Index;
         #endregion
 
 
@@ -89,9 +89,15 @@ namespace ABZ_Dialogues
                     break;
 
                 //=============================================Fuck we are under attack, go to east gate======
-                case DialogueState.SawElevator:
+                case DialogueState.AttackSounds:
                     LockAndRead(5, UnderAttackLines, underAttackIndex);
                     break;
+
+                //=============================================Gate is opening================================
+                case DialogueState.SawElevators:
+                    LockAndRead(9, elevator2Lines, elvtor2Index);
+                    break;
+
 
                 //=============================================Gate is opening================================
                 case DialogueState.ArrivedGate:
@@ -157,10 +163,20 @@ namespace ABZ_Dialogues
             }
         }
 
-        public void ChangeDialogueState(DialogueState _newState)
-        {
-            StartThisDialogue = _newState;
-        }
+
+        public void SwitchState2() => StartThisDialogue = DialogueState.Range;
+        public void SwitchState3() => StartThisDialogue = DialogueState.Defended;
+        public void SwitchState4() => StartThisDialogue = DialogueState.Fliped;
+        public void SwitchState5() => StartThisDialogue = DialogueState.Exploded;
+        public void SwitchState6() => StartThisDialogue = DialogueState.AttackSounds;
+        public void SwitchState7() => StartThisDialogue = DialogueState.ArrivedGate;
+        public void SwitchState8() => StartThisDialogue = DialogueState.GateOpened;
+        public void SwitchState9() => StartThisDialogue = DialogueState.GotOutside;
+
+        public void SwitchState10() => StartThisDialogue = DialogueState.SawElevators;
+
+
+
 
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using ABZ_Weapons;
 using ABZ_GameSystems;
 
+
 namespace ABZ_Pc
 {
     public class Pc_Shooting : MonoBehaviour
@@ -13,7 +14,7 @@ namespace ABZ_Pc
         public   Game_Events     onMissileShot;
         public   Game_Events     onDefending;
         private  Pc_AutoTarget   pcTarget;
-       
+        public GameObject ui_LaserPointer;
 
         #region Variables
 
@@ -54,7 +55,7 @@ namespace ABZ_Pc
         private  bool    isRealoadingLeftArm;
         public   bool    isHoldingLeftArmAction;
         public   bool    leftArmAnimationMove;
-        private  float   activateLeftAnimationTime;
+        public  float   activateLeftAnimationTime;
 
         #endregion
 
@@ -247,7 +248,7 @@ namespace ABZ_Pc
                     activateLeftAnimationTime -= Time.deltaTime;
                     if (activateLeftAnimationTime < 0)
                     { activateLeftAnimationTime = 0f; }
-
+                    ui_LaserPointer.SetActive(false);
                     pcData.pcAnimeScript.DeactivateLeftArm(activateLeftAnimationTime);
                 }
             }
@@ -263,7 +264,7 @@ namespace ABZ_Pc
                     activateLeftAnimationTime -= Time.deltaTime;
                     if (activateLeftAnimationTime < 0)
                     { activateLeftAnimationTime = 0f; }
-
+                    ui_LaserPointer.SetActive(false);
                     pcData.pcAnimeScript.ReloadLeftArmOff(activateLeftAnimationTime);
                 }
             }
@@ -275,7 +276,7 @@ namespace ABZ_Pc
                     activateLeftAnimationTime += Time.deltaTime;
                     if (activateLeftAnimationTime > 0.22f)
                     { activateLeftAnimationTime = 0.22f; }
-
+                    ui_LaserPointer.SetActive(true);
                     pcData.pcAnimeScript.ReloadLeftArmOn(activateLeftAnimationTime);
                 }
             }
@@ -287,7 +288,7 @@ namespace ABZ_Pc
                     activateLeftAnimationTime += Time.deltaTime;
                     if (activateLeftAnimationTime > 0.22f)
                     { activateLeftAnimationTime = 0.22f; }
-
+                    ui_LaserPointer.SetActive(true);
                     pcData.pcAnimeScript.ActivateLeftArm(activateLeftAnimationTime);
                 }
             }

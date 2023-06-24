@@ -39,21 +39,17 @@ namespace ABZ_Levels
                     }
 
                     break;
+
+
                 case TargetType.MissileTarger:
+                    if (hasBeenHit)
+                    { break; }
+
                     if (other.gameObject.CompareTag("Proj_P_M"))
                     {
-                        if (hasBeenHit)
-                        {                            break;                        }
-
-                        if (other.GetComponent<P_MissileBehavior>() != null)
-                        {
-
-                            onMissileTargetHit.Raise(this, this.gameObject);
-                            OnDestroyedByMissile.Raise();
-                            Instantiate(explosionParticle, transform.position, transform.rotation);
-                            minimapLocator.SetActive(false);
-                            this.gameObject.SetActive(false);
-                        }
+                        onMissileTargetHit.Raise();
+                        OnDestroyedByMissile.Raise();
+                        minimapLocator.SetActive(false);
                     }
                     break;
             }

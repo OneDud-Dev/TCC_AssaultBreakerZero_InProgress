@@ -12,18 +12,17 @@ namespace ABZ_Levels
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (!hasDefended) 
-            {
-                if (collision.gameObject.CompareTag("Proj_P_M"))
-                {
-                    hasDefended = true;
-                    OnDefending.Raise(this, "Acerte Os Quatro Alvos");
-                }
-            }
-            else
+            if (hasDefended)
             {
                 return;
             }
+
+                if (collision.gameObject.CompareTag("Proj_P_M"))
+                {
+                    hasDefended = true;
+                    OnDefending.Raise();
+                }
+            
         }
     }
 }

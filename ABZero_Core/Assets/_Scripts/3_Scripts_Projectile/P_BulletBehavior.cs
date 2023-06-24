@@ -34,7 +34,6 @@ namespace ABZ_Projectiles
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("bullethit");
             GameObject bulletHit = Instantiate(hitBulletParticle, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }

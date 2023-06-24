@@ -21,7 +21,10 @@ namespace ABZ_Pc
         //verificar se usar this pra injetar referencia está funcionando
         [Header("Game Status")]
 
-        public bool gameIsRunning = true;
+        public bool gameIsRunning   = true;
+        public bool leftOverride    = false;
+        public bool rightOverride   = false;
+        public bool specialOverride = false;
 
         [Header("input")]
         public PlayerInput  pcInput;

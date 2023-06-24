@@ -23,22 +23,27 @@ namespace ABZ_Levels
         public enum LevelState { Started, HasDefended, HasFliped, HasExploded, HasSawElevator, HasArrivedGate, GateOpened, HasGotOutside }
         public LevelState currentLevelState;
 
+        public Lvl1_1_MLncher lclLaucher;
 
 
 
         private void Start()
         {
             ObjectiveEvents[0].Raise(this, Objectives[0]);
-            pcData.pcShoot.leftIsActive = false;
-            pcData.pcShoot.rightIsActive = false;
-            pcData.pcShoot.specialIsActive = false;
+            pcData.leftOverride     = true;
+            pcData.rightOverride    = true;
+            pcData.specialOverride  = true;
+            
+            
+
         }
 
-        
 
 
+        // INCREMENT EVENTS ARE CUSTOM EVENTS
+        // OBJECTIVE EVENTS ARE CUSTOM EVENTS
+        // LEVELSTATE EVENTS ARE UNITY EVENTS
 
-        // event methods
         public void IncrementTargets()
         {
             HitTargets++;
@@ -46,38 +51,89 @@ namespace ABZ_Levels
             {
                 allTargetFliped = true;
                 ObjectiveEvents[3].Raise(this, Objectives[3]) ;
+                PlayerHasFlipedTargets();
             }
         }
 
+
+       
         public void PlayerHasEnteredShootingRange()
         {
-            pcData.pcShoot.rightIsActive = true;
+            // UNITY EVENT RAISED BY CORRIDOR TRIGGER
+            pcData.rightOverride = false;
             ObjectiveEvents[1].Raise(this, Objectives[1]) ; 
+            
         }
 
         public void PlayerUsedShield()
         {
-            ObjectiveEvents[2].Raise(this, Objectives[2]) ; 
+            //EVENT RAISED BY SHIELD COLLIDER
+            lclLaucher.enabled = false;
             playerDefended = true;
+            pcData.leftOverride = false;
+            pcData.pcShoot.leftArmAnimationMove = true;
+            pcData.pcShoot.ui_LaserPointer.SetActive(true);
+            pcData.pcShoot.SetLeftArm();
             currentLevelState = LevelState.HasDefended;
-            pcData.pcShoot.leftIsActive = true;
+            ObjectiveEvents[2].Raise(this, Objectives[2]) ; 
         }
 
         public void PlayerHasFlipedTargets()
         {
-            ObjectiveEvents[3].Raise(this, Objectives[3]) ;
+            DialogueEvents[3].Raise();
+            //EVENTS INCREMENTED BY EACH TARGET
             allTargetFliped = true;
+            pcData.specialOverride = false;
             currentLevelState = LevelState.HasFliped;
-            pcData.pcShoot.specialIsActive = true;
+            ObjectiveEvents[3].Raise(this, Objectives[3]) ;
         }
-        //am settubg methods to change objectives and states and dialogues of 1-1 Level
-        public void ExplodeTarget()
+        
+        public void PlayerExplodeTarget()
         {
-            ObjectiveEvents[4].Raise(this, Objectives[4]) ;
+            DialogueEvents[4].Raise();
+            //EVENT RAISED BY BIG TARGET EXPLOSION
             targetExploded = true;
             currentLevelState = LevelState.HasExploded;
+            ObjectiveEvents[4].Raise(this, Objectives[4]) ;
+            //SPAWN BOMBARDMENT SOUNDS
         }
 
+        public void PlayerElevetorExploded()
+        {
+           
+            //EVENT RAISED BY ELEVATOR ROOM TRIGGER IF LEVELSTATE = HAS EXPLODED
+            //CHANGE MUSIC
+             //no more objectives
+            
+        }
 
+        public void PlayerSawElevator()
+        {
+            ObjectiveEvents[5].Raise(this, Objectives[5]);
+            currentLevelState = LevelState.HasSawElevator;
+        }
+
+        public void PlayerArrivedAtGate()
+        {
+            //EVENT RAISED BY GATE ROOM TRIGGER
+            //activate gate animation open
+            currentLevelState = LevelState.HasArrivedGate;
+
+
+        }
+
+        public void PlayerPastGate()
+        {
+            //EVENT RAISED BY SECOND TRIGGER PAST THE GATE
+            //OPEN SECOND GATE
+            currentLevelState = LevelState.GateOpened;
+        }
+        public void PlayerOutSide()
+        {
+            //EVENT RAISED BY THIRD TRIGGER
+            //DIALOGUE
+            //DEACTIVATE PLAYER
+            //CHANGE LVEL TO 1-1
+        }
     }
 }
