@@ -2,7 +2,8 @@
     "name": "Assembly_Ai",
     "rootNamespace": "ABZ_Ai",
     "references": [
-        "GUID:d1354e6854968be4eb14c72142f4d58b"
+        "GUID:d1354e6854968be4eb14c72142f4d58b",
+        "GUID:395a84304c01d24458b7ba589f96b214"
     ],
     "includePlatforms": [
         "Editor",

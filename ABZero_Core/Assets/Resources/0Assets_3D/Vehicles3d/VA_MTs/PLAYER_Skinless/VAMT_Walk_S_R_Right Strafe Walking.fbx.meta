@@ -1,0 +1,479 @@
+fileFormatVersion: 2
+guid: 19a06289ea90f334288a47a68737e2eb
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: VAMT_Walk_S_R_Right Strafe Walking
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: _VAMT_Player_T-Pose(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: FeetAxel_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.99710447, y: 0.124940395, z: 0.16677526}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 21.517328, y: 21.517328, z: 13.850806}
+    - name: FeetBase_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.9915797, y: 0.19086051, z: -0.22070089}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 29.854721, y: 29.854721, z: 7.738872}
+    - name: FeetWheel_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.92598546, y: 0.25321504, z: -0.58459735}
+      rotation: {x: 0.50000006, y: -0.50000006, z: 0.4999999, w: -0.5}
+      scale: {x: 25.650454, y: 25.650454, z: 8.931897}
+    - name: FeetFront_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.99180007, y: 0.12075186, z: 0.440035}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 29.854721, y: 29.854721, z: 7.738872}
+    - name: FeetSphere_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.9898873, y: 0.3370471, z: 0.16454473}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 16.526777, y: 16.526777, z: 16.526777}
+    - name: FeetSphereSupport_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.98277634, y: 0.36196563, z: -0.009328304}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 20.510225, y: 20.510225, z: 20.510225}
+    - name: FeetAxel_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -1.0069339, y: 0.12494087, z: 0.16677529}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 21.517328, y: 21.517328, z: 13.850806}
+    - name: FeetBase_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -1.0014079, y: 0.19086051, z: -0.22070095}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 29.854721, y: 29.854721, z: 7.738872}
+    - name: FeetWheel_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.9358137, y: 0.25321484, z: -0.58459735}
+      rotation: {x: 0.50000006, y: -0.50000006, z: 0.4999999, w: -0.5}
+      scale: {x: 25.650454, y: 25.650454, z: 8.931897}
+    - name: FeetFront_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -1.0016283, y: 0.12075186, z: 0.440035}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 29.854721, y: 29.854721, z: 7.738872}
+    - name: FeetSphere_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.9997153, y: 0.3370471, z: 0.16454475}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 16.526777, y: 16.526777, z: 16.526777}
+    - name: FeetSphereBase_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.9926042, y: 0.36196518, z: -0.009328324}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 20.510225, y: 20.510225, z: 20.510225}
+    - name: UpperLeg1_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.9743931, y: 2.61768, z: 0.18239756}
+      rotation: {x: -0.79594284, y: 0, z: 0, w: 0.6053718}
+      scale: {x: 24.399632, y: 29.270824, z: 40.979153}
+    - name: LowerLeg1_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.9859274, y: 1.1526864, z: 0.14788182}
+      rotation: {x: -0.5679726, y: 0, z: -0, w: 0.82304746}
+      scale: {x: 23.53928, y: 25.67265, z: 38.508972}
+    - name: UpperLeg2_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 1.0151608, y: 2.3450706, z: 0.10326516}
+      rotation: {x: -0.79594284, y: 0, z: 0, w: 0.6053718}
+      scale: {x: 24.259714, y: 29.270824, z: 40.979153}
+    - name: LowerLeg1_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.98592716, y: 1.1526864, z: 0.14788182}
+      rotation: {x: -0.5679726, y: 0, z: -0, w: 0.82304746}
+      scale: {x: 23.53928, y: 25.67265, z: 38.508972}
+    - name: UpperLeg2_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -1.0151608, y: 2.3450706, z: 0.10326516}
+      rotation: {x: -0.79594284, y: 0, z: 0, w: 0.6053718}
+      scale: {x: 24.262737, y: 29.270824, z: 40.979153}
+    - name: UpperLeg1_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.9743934, y: 2.6176794, z: 0.18239756}
+      rotation: {x: -0.79594284, y: 0, z: 0, w: 0.6053718}
+      scale: {x: 24.399632, y: 29.270824, z: 40.979153}
+    - name: CenterBase
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -1.042337e-17, y: 3.4205072, z: -0.009388538}
+      rotation: {x: 0.50000006, y: 0.50000006, z: -0.49999997, w: -0.49999994}
+      scale: {x: 30.44016, y: 30.44016, z: 41.0998}
+    - name: ArmorAxels
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.00000005803783, y: 3.5965872, z: -0.054385565}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 67.27994, y: 13.766326, z: 67.27994}
+    - name: ArmorFront
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 1.052178e-17, y: 3.3261783, z: 0.4785505}
+      rotation: {x: -0.7361853, y: 6.595309e-18, z: -6.595304e-18, w: 0.67678}
+      scale: {x: 39.42636, y: 9.636, z: 67.27994}
+    - name: CenterSuport
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.00000052132555, y: 3.6753542, z: 0.03844898}
+      rotation: {x: -0.000000037748947, y: -1.110223e-16, z: 1.1102229e-16, w: 1}
+      scale: {x: 13.244486, y: 13.244486, z: 13.244486}
+    - name: CenterLegAxel1
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0, y: 3.1369884, z: 0.01913995}
+      rotation: {x: 0.50000006, y: -0.50000006, z: 0.4999999, w: -0.5}
+      scale: {x: 25.843132, y: 25.689169, z: 41.188637}
+    - name: ArmorBack
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 3.368483e-17, y: 3.2218611, z: -0.6370892}
+      rotation: {x: -0.00000002304335, y: 0.702331, z: 0.7118505, w: 0.00000008414049}
+      scale: {x: 48.0224, y: 9.701057, z: 113.354675}
+    - name: CenterAxel
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0, y: 3.7864175, z: -0.13668737}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 27.207577, y: 27.207577, z: 10.065875}
+    - name: CenterLegAxel2
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.00000040101966, y: 3.0903668, z: 0.009360031}
+      rotation: {x: 0.50000006, y: 0.50000006, z: -0.4999999, w: -0.5}
+      scale: {x: 23.634506, y: 23.634506, z: 23.634506}
+    - name: Torso
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0, y: 4.0352125, z: -0.1628564}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 37.62546, y: 37.62546, z: 13.920138}
+    - name: Cockpit
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 2.1920275e-17, y: 4.8343678, z: 0.8988729}
+      rotation: {x: -0.56388706, y: -2.908396e-17, z: 2.9083955e-17, w: 0.8258519}
+      scale: {x: 48.222412, y: 33.82628, z: 46.31333}
+    - name: UpperFlaps
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.55656093, y: 5.500439, z: 0}
+      rotation: {x: -0.7134655, y: -0.0981133, z: 0.03681456, w: 0.6928098}
+      scale: {x: 29.355747, y: 29.35575, z: 3.4242165}
+    - name: LowerArm_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 0.87957937, y: 5.16092, z: -0.13903977}
+      rotation: {x: 0.5115114, y: -0.4918271, z: 0.5100022, w: -0.48616865}
+      scale: {x: 13.891622, y: 13.891621, z: 33.28419}
+    - name: LowerArmBase_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.57913345, y: 5.155633, z: -0.15424672}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 20.650106, y: 20.650106, z: 20.650106}
+    - name: UpperArm_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 2.2089143, y: 5.150561, z: -0.14030392}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 7.825587, y: 7.825587, z: 7.825587}
+    - name: Elbow_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 1.4326969, y: 5.1580143, z: -0.13789122}
+      rotation: {x: 0.7223192, y: -0.6915475, z: -0.0010672297, w: 0.004000989}
+      scale: {x: 13.891538, y: 13.891345, z: 16.5}
+    - name: UpperArm2_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 1.6028464, y: 5.160493, z: -0.13974336}
+      rotation: {x: 0.5115114, y: -0.4918271, z: 0.5100022, w: -0.48616865}
+      scale: {x: 13.891622, y: 13.891621, z: 33.28419}
+    - name: Hand_R
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: 2.8987186, y: 5.153247, z: -0.14413606}
+      rotation: {x: 0.7223192, y: -0.6915475, z: -0.0010672298, w: 0.0040009883}
+      scale: {x: 10.631781, y: 10.631632, z: 12.628148}
+    - name: LowerArm_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.8795793, y: 5.16092, z: -0.13903977}
+      rotation: {x: 0.5115114, y: -0.4918271, z: 0.5100022, w: -0.48616865}
+      scale: {x: 13.891622, y: 13.891621, z: 33.28419}
+    - name: LowerArmBase_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.57913345, y: 5.155633, z: -0.15424672}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 20.650106, y: 20.650106, z: 20.650106}
+    - name: Elbow_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -1.4326974, y: 5.1580143, z: -0.13789128}
+      rotation: {x: 0.7223192, y: -0.6915475, z: -0.0010672297, w: 0.004000989}
+      scale: {x: 13.891538, y: 13.891345, z: 16.5}
+    - name: UpperArm2_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -1.6028194, y: 5.160492, z: -0.1397437}
+      rotation: {x: 0.5115114, y: -0.4918271, z: 0.5100022, w: -0.48616865}
+      scale: {x: 13.891622, y: 13.891621, z: 33.28419}
+    - name: UpperArm_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -2.2089148, y: 5.150561, z: -0.14030392}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 7.825587, y: 7.825587, z: 7.825587}
+    - name: Hand_L
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -2.8987186, y: 5.153247, z: -0.1441344}
+      rotation: {x: 0.7223192, y: -0.6915475, z: -0.0010672298, w: 0.0040009883}
+      scale: {x: 10.631781, y: 10.631632, z: 12.628148}
+    - name: Armature
+      parentName: _VAMT_Player_T-Pose(Clone)
+      position: {x: -0.0000000948615, y: 3.3544562, z: -0.043114297}
+      rotation: {x: -0.7071067, y: -0.000000025332366, z: 0.000000022100123, w: 0.7071068}
+      scale: {x: 67.27994, y: 67.27994, z: 67.27994}
+    - name: Hip
+      parentName: Armature
+      position: {x: -0, y: 0, z: -0.0043380293}
+      rotation: {x: 0.6670859, y: -0, z: -0, w: 0.7449808}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Waist
+      parentName: Hip
+      position: {x: -0, y: 0.010061046, z: 0}
+      rotation: {x: 0.12206332, y: 0.0000000018777824, z: -0.00000003356514, w: 0.99252236}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Torso1
+      parentName: Waist
+      position: {x: -3.1086245e-17, y: 0.0059409994, z: -1.3038516e-10}
+      rotation: {x: -0.12599555, y: -1.0623167e-28, z: 5.135885e-29, w: 0.99203086}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Cockpit1
+      parentName: Torso1
+      position: {x: -1.7763568e-17, y: 0.015022227, z: -7.4505804e-11}
+      rotation: {x: 0.26905444, y: -1.6968379e-14, z: 6.714082e-15, w: 0.963125}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Cockpit_end
+      parentName: Cockpit1
+      position: {x: -0, y: 0.016506974, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: UpperArm.L
+      parentName: Torso1
+      position: {x: -0.008766116, y: 0.015072286, z: -0.000065870205}
+      rotation: {x: 0.041745204, y: -0.041745197, z: 0.7058734, w: 0.7058735}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LowerArm.L
+      parentName: UpperArm.L
+      position: {x: 0.000000001181913, y: 0.012598771, z: -9.266074e-11}
+      rotation: {x: -0.0000000027564788, y: 0.000000059604638, z: 2.0441404e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LowerArm.L_end
+      parentName: LowerArm.L
+      position: {x: -0, y: 0.02096391, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Special
+      parentName: Torso1
+      position: {x: -0.0000000016632807, y: 0.025349092, z: -0.006976305}
+      rotation: {x: 0.9440959, y: 0, z: 0, w: -0.3296709}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Special_end
+      parentName: Special
+      position: {x: -0, y: 0.018675646, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: UpperArm.R
+      parentName: Torso1
+      position: {x: 0.008766116, y: 0.015072286, z: -0.000065874236}
+      rotation: {x: 0.041745204, y: 0.041745197, z: -0.7058734, w: 0.7058735}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LowerArm.R
+      parentName: UpperArm.R
+      position: {x: -0.0000000011612247, y: 0.012598771, z: -1.4219181e-10}
+      rotation: {x: -0.0000000027564788, y: -0.000000059604638, z: -2.0441404e-14,
+        w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LowerArm.R_end
+      parentName: LowerArm.R
+      position: {x: -0, y: 0.02096391, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: UpperLeg.L
+      parentName: Hip
+      position: {x: -0.014297255, y: -0.0000438332, z: -0.000004847874}
+      rotation: {x: 0.0022334964, y: 0.061352473, z: 0.9980807, w: 0.008117015}
+      scale: {x: 0.99999934, y: 0.9999994, z: 0.99997884}
+    - name: LowerLeg.L
+      parentName: UpperLeg.L
+      position: {x: -3.4779077e-10, y: 0.015949233, z: -6.0535965e-10}
+      rotation: {x: -0.20827062, y: -0.0011673177, z: 0.013767343, w: 0.97797364}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Wheel.L
+      parentName: LowerLeg.L
+      position: {x: -5.2852556e-10, y: 0.026257608, z: 1.2107193e-10}
+      rotation: {x: -0.093474515, y: -0.5968031, z: -0.7925049, w: 0.083813086}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Wheel.L_end
+      parentName: Wheel.L
+      position: {x: -0, y: 0.010639638, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe.L
+      parentName: LowerLeg.L
+      position: {x: -5.2852556e-10, y: 0.026257608, z: 1.2107193e-10}
+      rotation: {x: 0.63251626, y: -0.003231271, z: -0.008002625, w: 0.774499}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+    - name: Toe.L_end
+      parentName: Toe.L
+      position: {x: -0, y: 0.007803421, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: UpperLeg.R
+      parentName: Hip
+      position: {x: 0.014297255, y: -0.000043833195, z: -0.0000048547286}
+      rotation: {x: -0.0022318817, y: 0.06135075, z: 0.9980808, w: -0.00811725}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.99999803}
+    - name: LowerLeg.R
+      parentName: UpperLeg.R
+      position: {x: 1.7636921e-10, y: 0.015949233, z: 1.0244548e-10}
+      rotation: {x: -0.20826893, y: 0.001167345, z: -0.013767138, w: 0.97797406}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.9999999}
+    - name: Wheel.R
+      parentName: LowerLeg.R
+      position: {x: -6.0652383e-10, y: 0.026257526, z: 4.9825755e-10}
+      rotation: {x: -0.093473814, y: 0.59679836, z: 0.7925087, w: 0.08381186}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Wheel.R_end
+      parentName: Wheel.R
+      position: {x: -0, y: 0.010639638, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe.R
+      parentName: LowerLeg.R
+      position: {x: -6.0652383e-10, y: 0.026257526, z: 4.9825755e-10}
+      rotation: {x: 0.63251156, y: 0.0032306, z: 0.008001574, w: 0.77450293}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: Toe.R_end
+      parentName: Toe.R
+      position: {x: -0, y: 0.007803421, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: Hip
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 8289426239613bc4ea83e09fa4455030,
+    type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

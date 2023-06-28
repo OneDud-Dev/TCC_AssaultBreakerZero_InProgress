@@ -1,7 +1,10 @@
 {
     "name": "Assembly_Weapons",
     "rootNamespace": "ABZ_Weapons",
-    "references": [],
+    "references": [
+        "GUID:2201e9f93f7fdd44ab698d13389ed998",
+        "GUID:395a84304c01d24458b7ba589f96b214"
+    ],
     "includePlatforms": [
         "Editor",
         "WindowsStandalone32",

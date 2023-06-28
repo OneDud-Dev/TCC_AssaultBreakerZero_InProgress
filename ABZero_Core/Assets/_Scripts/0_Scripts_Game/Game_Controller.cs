@@ -2,20 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ABZCore
+namespace ABZ_GameSystems
 {
     public class Game_Controller : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+
+
+        //make singleton
+
+
+        private void Start()
         {
-        
+            NoCursor();
         }
 
-        // Update is called once per frame
-        void Update()
+
+        public void NoCursor()
         {
-        
+            Debug.Log("no cursor");
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        public void YesCursor()
+        {
+            Debug.Log("yesCursor");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 }

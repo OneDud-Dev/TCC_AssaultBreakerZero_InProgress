@@ -3,25 +3,39 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Projectile_A
+  - Projectile_P
+  - Projectile_E
+  - ETargetObjective
+  - ETargetChar
+  - ETargetLimbs
+  - ATargetObjective
+  - ATargetChar
+  - ATargetLimbs
+  - ATargetBuild
+  - Proj_P_B
+  - Proj_P_M
+  - Proj_P_S
+  - GameCtrl
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
+  - Spheremov
+  - Projectiles
+  - Characters
+  - Buildings
+  - VisualsOnly
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Minimap
+  - GetTarget
+  - Triggers
+  - Bounds
   - 
   - 
   - 

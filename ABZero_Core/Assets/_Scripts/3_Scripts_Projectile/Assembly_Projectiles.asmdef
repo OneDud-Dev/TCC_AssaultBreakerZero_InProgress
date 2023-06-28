@@ -1,7 +1,9 @@
 {
     "name": "Assembly_Projectiles",
     "rootNamespace": "ABZ_Projectiles",
-    "references": [],
+    "references": [
+        "GUID:395a84304c01d24458b7ba589f96b214"
+    ],
     "includePlatforms": [
         "Editor",
         "WindowsStandalone32",

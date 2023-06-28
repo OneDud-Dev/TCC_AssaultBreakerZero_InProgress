@@ -11,7 +11,7 @@ namespace ABZ_Ui
         #region Variables
 
         [Header("References")]
-        public TextMeshProUGUI txtTimeValue;
+        public TMP_Text txtTimeValue;
 
         [Header("Time Variables")]
         //public string tempoDePartidaString;
@@ -26,17 +26,13 @@ namespace ABZ_Ui
 
         #region Unity
 
-        private void Awake()
-        {
-
-        }
-
 
         private void Start()
         {
             //tempoDePartidaString = "00:00:00";
 
-            tempoEstaPassando = false;
+            tempoEstaPassando = true;
+            StartLevelTimer();
         }
 
         #endregion
@@ -47,6 +43,8 @@ namespace ABZ_Ui
 
         public void StartLevelTimer()
         {
+
+
             tempoEstaPassando = true;
             tempoDecorrido = 0f;
 

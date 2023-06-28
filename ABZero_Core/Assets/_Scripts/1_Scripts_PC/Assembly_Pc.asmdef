@@ -3,7 +3,11 @@
     "rootNamespace": "ABZ_Pc",
     "references": [
         "GUID:d1354e6854968be4eb14c72142f4d58b",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:395a84304c01d24458b7ba589f96b214",
+        "GUID:9c8a9f57bdf8e0b4187313a795503be4",
+        "GUID:7f7d1af65c2641843945d409d28f2e20"
     ],
     "includePlatforms": [
         "Editor",

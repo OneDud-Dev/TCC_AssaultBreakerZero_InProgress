@@ -1,0 +1,24 @@
+{
+    "name": "Assembly_Levels",
+    "rootNamespace": "ABZ_Levels",
+    "references": [
+        "GUID:57a88c7cac09fc241b237b6c639b8ee5",
+        "GUID:2201e9f93f7fdd44ab698d13389ed998",
+        "GUID:395a84304c01d24458b7ba589f96b214",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:6fdd115374891234d8902e571fe12484"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
