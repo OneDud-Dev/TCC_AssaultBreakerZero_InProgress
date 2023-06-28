@@ -23,8 +23,11 @@ namespace ABZ_Levels
         public enum LevelState { Started, HasDefended, HasFliped, HasExploded, HasSawElevator, HasArrivedGate, GateOpened, HasGotOutside }
         public LevelState currentLevelState;
 
+        
         public Lvl1_1_MLncher lclLaucher;
+        public GameObject Elevetors;
 
+        public GameObject[] sounds;
 
 
         private void Start()
@@ -33,9 +36,9 @@ namespace ABZ_Levels
             pcData.leftOverride     = true;
             pcData.rightOverride    = true;
             pcData.specialOverride  = true;
-            
-            
 
+            sounds[0] = Instantiate(sounds[0], transform.position, transform.rotation);
+            
         }
 
 
@@ -95,16 +98,18 @@ namespace ABZ_Levels
             targetExploded = true;
             currentLevelState = LevelState.HasExploded;
             ObjectiveEvents[4].Raise(this, Objectives[4]) ;
+
             //SPAWN BOMBARDMENT SOUNDS
+            Elevetors.SetActive(true);
         }
 
-        public void PlayerElevetorExploded()
+        public void PlayerAfterMissiles()
         {
-           
-            //EVENT RAISED BY ELEVATOR ROOM TRIGGER IF LEVELSTATE = HAS EXPLODED
-            //CHANGE MUSIC
-             //no more objectives
-            
+            sounds[0].GetComponent<AudioSource>().Stop();
+            sounds[1] = Instantiate(sounds[1], transform.position, transform.rotation);
+            sounds[2] = Instantiate(sounds[2], transform.position, transform.rotation);
+
+
         }
 
         public void PlayerSawElevator()
@@ -118,7 +123,7 @@ namespace ABZ_Levels
             //EVENT RAISED BY GATE ROOM TRIGGER
             //activate gate animation open
             currentLevelState = LevelState.HasArrivedGate;
-
+            sounds[2].GetComponent<AudioSource>().Stop();
 
         }
 

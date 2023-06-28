@@ -76,7 +76,7 @@ namespace ABZ_Pc
 
                     SetObjectPosition(mainPivot,   sphereMov);
                     SetObjectPosition(bodyRootPos, mainPivot, bodyOffset);
-                    RotateObjOverTime(mainPivot, cameraFollow, 1);
+                    RotateObjOverTime(mainPivot, cameraFollow, 5);
                     RotateObjOverTime(bodyRootPos, mainPivot, pcVamtOptions.bodyPivotRotNormal);
                     
                     

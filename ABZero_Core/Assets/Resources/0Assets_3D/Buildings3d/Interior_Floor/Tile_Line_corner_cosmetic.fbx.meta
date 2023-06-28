@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BottonFloorLine
-    second: {fileID: 2100000, guid: 6802f8e1eea98c7458ef4cc7510d7c10, type: 2}
+    second: {fileID: 2100000, guid: b850ae7a1ed26f048829454ebff22e56, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: SlopeFloor_Bevel
-    second: {fileID: 2100000, guid: 8a81ae3684a3d36428b896d625cf8db2, type: 2}
+    second: {fileID: 2100000, guid: 2276f302cc66ea54193ec389444ed065, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: TopFloor
-    second: {fileID: 2100000, guid: f922a209616af124f86369f8edf50a3e, type: 2}
+    second: {fileID: 2100000, guid: 54ac87caed8bb9a45a6cb5bd008a6150, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

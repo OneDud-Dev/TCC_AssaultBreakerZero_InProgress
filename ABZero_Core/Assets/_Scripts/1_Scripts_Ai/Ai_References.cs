@@ -38,7 +38,7 @@ namespace ABZ_Ai
         [Header("--------game objects----------------")]
         public GameObject   aiRoot;
         public Transform    aiPos;
-
+        public Transform    aiPivot;
         public Transform    bodyPos;
         //public Transform    upperBody;
         //public Transform    lowerBody;

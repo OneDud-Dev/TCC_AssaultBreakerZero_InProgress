@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using ABZ_GameSystems;
 
 namespace ABZ_Ui
 {
     public class Ui_StartMenu : MonoBehaviour
     {
+        public Game_AudioController audio;
 
         public Canvas Cvs_Splash;
         public Canvas Cvs_Start;
@@ -27,38 +29,48 @@ namespace ABZ_Ui
         #region Screen Changers
         public void Bton_Splash()
         {
+            audio.Play("Clicked");
             TurnOffCanvas(Cvs_Splash);
             TurnOnCanvas(Cvs_Start);
         }
         public void Bton_Campaing()
         {
+            audio.Play("Clicked");
             TurnOffCanvas(Cvs_Start);
             TurnOnCanvas(Cvs_Campaing);
         }
         public void Bton_Campaing_B()
         {
+            audio.Play("Back");
+
             TurnOffCanvas(Cvs_Campaing);
             TurnOnCanvas(Cvs_Start);
         }
         public void Bton_Options()
         {
+            audio.Play("Back");
+
             TurnOffCanvas(Cvs_Start);
             TurnOnCanvas(Cvs_Options);
         }
         public void Bton_Options_B()
         {
+
+            audio.Play("Back");
             TurnOffCanvas(Cvs_Options);
             TurnOnCanvas(Cvs_Start);
         }
         public void Bton_Chapters()
         {
-            TurnOffCanvas(Cvs_Start);
+            audio.Play("Clicked");
+            TurnOffCanvas(Cvs_Campaing);
             TurnOnCanvas(Cvs_ChapterSelect);
         }
         public void Bton_Chapters_B()
         {
+            audio.Play("Back");
             TurnOffCanvas(Cvs_ChapterSelect);
-            TurnOnCanvas(Cvs_Start);
+            TurnOnCanvas(Cvs_Campaing);
         }
 
         public void Bton_Exit()
@@ -112,7 +124,7 @@ namespace ABZ_Ui
         #region ChapterSelect
         public void LoadLvl1()
         {
-            SceneManager.LoadScene("04_lvl_1_1_TrainingDay_Underground");
+            SceneManager.LoadScene("04_lvl_1_1_TrainingDay_Underground 1");
         }
         public void LoadLvl2()
         {
@@ -124,5 +136,11 @@ namespace ABZ_Ui
 
         private void TurnOnCanvas(Canvas cvs) => cvs.gameObject.SetActive(true);
         private void TurnOffCanvas(Canvas cvs) => cvs.gameObject.SetActive(false);
+    
+    
+    
+    
+    
+    
     }
 }

@@ -22,6 +22,7 @@ namespace ABZ_Pc
         [Header("Game Status")]
 
         public bool gameIsRunning   = true;
+        public bool camMove;
         public bool leftOverride    = false;
         public bool rightOverride   = false;
         public bool specialOverride = false;

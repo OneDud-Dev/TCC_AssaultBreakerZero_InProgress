@@ -11,7 +11,7 @@ namespace ABZ_Levels
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                SceneManager.LoadScene("01_StartScreen");
+                SceneManager.LoadScene("05_lvl_1_2_TrainingDay_Surface");
             }
         }
     }

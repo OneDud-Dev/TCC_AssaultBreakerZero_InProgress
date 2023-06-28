@@ -93,7 +93,7 @@ namespace ABZ_Pc
                 case true:
                     CheckIfIsGrounded(currentAltitudeValue, groundCheckLength);
                     ActivateSpeedCalculation();// calculate speed data for amny references
-
+                    //GetDownwardForce(pcData.vamtSettings.gravityCurve, currentAltitudeValue, 1);
                     break;
             }
         }
@@ -109,6 +109,7 @@ namespace ABZ_Pc
                 case true:
 
                     currentAltitudeValue = GetAltitude(sphereMov.position, -pivotPos.up);
+                    CustomGravity(sphereMov, pivotPos, 5, 100);
 
                     //movement calculations
                     switch (currentVerticalStatus)
@@ -119,18 +120,18 @@ namespace ABZ_Pc
                                 case Pc_Movement.MovementType.Walking:
                                     ForwardMovement (sphereMov, forwardReference, forwardForce);
                                     StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                    
                                     break;
 
                                 case Pc_Movement.MovementType.Running:
                                     ForwardMovement (sphereMov, forwardReference, forwardForce);
                                     StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                  
                                     break;
                                 case Pc_Movement.MovementType.Boosting:
                                     ForwardMovement(sphereMov, forwardReference, forwardForce);
                                     StrafeMovement(sphereMov, forwardReference, horizontalForce);
-                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                  
                                     break;
                             }
                             break;
@@ -142,20 +143,20 @@ namespace ABZ_Pc
                                 case Pc_Movement.MovementType.Walking:
                                     ForwardMovement (sphereMov, forwardReference, forwardForce);
                                     StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                  
                                     break;
 
                                 case Pc_Movement.MovementType.Running:
                                     ForwardMovement (sphereMov, forwardReference, forwardForce);
                                     StrafeMovement  (sphereMov, forwardReference, horizontalForce);
-                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                  
                                     isBoosting = true;
                                     break;
 
                                 case Pc_Movement.MovementType.Boosting:
                                     ForwardMovement(sphereMov, forwardReference, forwardForce);
                                     StrafeMovement(sphereMov, forwardReference, horizontalForce);
-                                  //BodyRotation    (playerBody, pcData.camPivot, RotationForce);
+                                  
                                     break;
                             }
 
@@ -319,17 +320,15 @@ namespace ABZ_Pc
             switch (currentVerticalStatus)
             {
                 case verticality.Grounded:
-                    _sphereRb.AddForce((-_downwardDir.up) * _groundedAccel, ForceMode.Acceleration);
-                    _sphereRb.drag = 1f;
+                    _sphereRb.AddForce((-_downwardDir.up) * _groundedAccel);
+                    //_sphereRb.drag = 2f;
                     break;
 
 
                 case verticality.Suspended:
-                    _sphereRb.AddForce((-_downwardDir.up) * _suspendedAccel, ForceMode.Acceleration);
-                    _sphereRb.drag = .8f;
+                    _sphereRb.AddForce((-_downwardDir.up) * _suspendedAccel);
+                    //_sphereRb.drag = .3f;
 
-                    break;
-                default:
                     break;
             }
         }

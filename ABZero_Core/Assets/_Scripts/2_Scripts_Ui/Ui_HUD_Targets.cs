@@ -14,9 +14,6 @@ namespace ABZ_Ui
         public TargetType thisTargetType;
         public enum TargetType { Main, next, recognized }
 
-        [Header("EventReferences")]
-        public Game_Events onTargetDestroyed;
-
         [Header("AiReferences")]
         public Transform mainCam;
         public GameObject currentTarget;
@@ -63,7 +60,6 @@ namespace ABZ_Ui
             targetIsActive = false;
             currentTarget.SetActive(false);
             currentTarget = null;
-
         }
 
         public void ChangeTargetType(TargetType _newType)

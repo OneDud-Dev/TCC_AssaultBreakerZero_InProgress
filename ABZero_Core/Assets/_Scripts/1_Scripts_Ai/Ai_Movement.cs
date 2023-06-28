@@ -15,11 +15,7 @@ namespace ABZ_Ai
         public bool travelDebug;
         public bool orbitDebug;
 
-        [Header("--------Movement----------------")]
-        public float aiSpeed;
-        public float aiAngularSpeed;
-        public float aiAccel;
-        public float iStopDistance;
+       
 
         [Header("--------PathFinding----------------")]
         public bool hasNextWalkpoint;
@@ -56,12 +52,7 @@ namespace ABZ_Ai
             hasNextWalkpoint = travelingPathNodes.Count > 0;
         }
 
-        private void Update()
-        {
-
-
-        }
-
+     
         #endregion
 
 

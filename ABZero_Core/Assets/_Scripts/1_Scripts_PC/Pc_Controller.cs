@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 namespace ABZ_Pc
 {
@@ -15,6 +15,10 @@ namespace ABZ_Pc
         [Header("Data Reference")]
         public Pc_References pcData;
         public Game_Events OnPauseGame;
+
+        public Game_Controller GameCtrl;
+        public GameObject pauseCanvas;
+
         [Header("Ref Set")]
         public Pc_VAMT_SObj vamtSetting;
         public bool         playerIsActive;
@@ -65,7 +69,10 @@ namespace ABZ_Pc
         #endregion
 
 
-
+        private void Awake()
+        {
+            //GameCtrl = GameObject.FindGameObjectWithTag("GameCtrl").GetComponent<Game_Controller>();
+        }
 
         #region Unity
         private void Start()
@@ -93,6 +100,8 @@ namespace ABZ_Pc
             pauseAction          = pcData.pcInput.actions["PauseAction"];
             //seting inicial data
             pcMov.currentVerticalStatus = Pc_Movement.verticality.Grounded;
+
+            
         }
 
         private void Update()
@@ -123,7 +132,7 @@ namespace ABZ_Pc
 
         //----------------------------Actions
         #region attack Actions
-        public void LeftArmAction(InputAction.CallbackContext _leftButton)
+        public void P_LeftArmAction(InputAction.CallbackContext _leftButton)
         {
             if (!pcData.leftOverride)
             {
@@ -131,7 +140,7 @@ namespace ABZ_Pc
             }
         }
 
-        public void RightArmAction(InputAction.CallbackContext _rightButton)
+        public void P_RightArmAction(InputAction.CallbackContext _rightButton)
         {
             if (!pcData.rightOverride)
             {
@@ -139,7 +148,7 @@ namespace ABZ_Pc
             }
         }
 
-        public void SpecialArmAction(InputAction.CallbackContext _middleButton)
+        public void P_SpecialArmAction(InputAction.CallbackContext _middleButton)
         {
             if (!pcData.specialOverride)
             {
@@ -147,11 +156,33 @@ namespace ABZ_Pc
             }
         }
 
+        public void P_PauseAction()
+        {
+            Time.timeScale = 0f;
+            pauseCanvas.SetActive(true);
+            GameCtrl.YesCursor();
+        }
+
+        public void P_UNPause()
+        {
+            Time.timeScale = 1f;
+            pauseCanvas.SetActive(false);
+            GameCtrl.NoCursor();
+        }
+
+        public void P_BackToMenu()
+        {
+            SceneManager.LoadScene("01_StartScreen");
+        }
+
         #endregion
 
         //----------------------------movement
 
-        public void GetMovementInput() => playerMovinput = moveAction.ReadValue<Vector2>();
+        public void GetMovementInput()
+        {
+                playerMovinput = moveAction.ReadValue<Vector2>();
+        }
 
         public void ActivateRunning(InputAction.CallbackContext _accelButton)
         {

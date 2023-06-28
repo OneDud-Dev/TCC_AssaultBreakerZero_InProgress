@@ -14,7 +14,7 @@ namespace ABZ_Levels
         public float timer;
         public GameObject projectil;
         public Transform spawn;
-
+        public AudioSource lchsound;
      
         private void Update()
         {
@@ -23,6 +23,8 @@ namespace ABZ_Levels
             if (timer > rateOfFire)
             {
                 Instantiate(projectil, spawn.position, spawn.rotation);
+                lchsound.Play();
+
                 timer= 0;
             }
         }

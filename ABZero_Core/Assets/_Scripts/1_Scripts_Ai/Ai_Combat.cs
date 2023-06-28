@@ -115,7 +115,7 @@ namespace ABZ_Ai
                 weaponTimer = 0f;
                 currentClip += 1;
 
-                //equipedWeapon.SpawnProjectile(data.bulletSpawner); ---------------------------------need a target
+                ((IShoot)equipedWeapon).SpawnProjectile(data.bulletSpawner);
                 yield return null;
             }
 

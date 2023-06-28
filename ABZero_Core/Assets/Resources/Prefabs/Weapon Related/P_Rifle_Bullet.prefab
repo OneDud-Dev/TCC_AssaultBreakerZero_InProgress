@@ -272,9 +272,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7825620923705804665}
+  - component: {fileID: -6464742679277025331}
   - component: {fileID: 6691710415046692963}
   - component: {fileID: 1821318370041765313}
-  - component: {fileID: -6464742679277025331}
   m_Layer: 7
   m_Name: P_Rifle_Bullet
   m_TagString: Proj_P_B
@@ -300,6 +300,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6464742679277025331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666776102330577277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4312b3a38a254d549a3758eb32df961e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletRB: {fileID: 6691710415046692963}
+  hitBulletParticle: {fileID: 233744057873081493, guid: 52ae87ae679cf8749a72f8e50c3f663d,
+    type: 3}
+  bullletSpeed: 60
 --- !u!54 &6691710415046692963
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -350,22 +366,6 @@ CapsuleCollider:
   m_Height: 0.6
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6464742679277025331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7666776102330577277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4312b3a38a254d549a3758eb32df961e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletRB: {fileID: 6691710415046692963}
-  hitBulletParticle: {fileID: 233744057873081493, guid: 52ae87ae679cf8749a72f8e50c3f663d,
-    type: 3}
-  bullletSpeed: 60
 --- !u!1 &7874845555193062341
 GameObject:
   m_ObjectHideFlags: 0

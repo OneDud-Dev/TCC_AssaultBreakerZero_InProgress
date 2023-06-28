@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/03_MissionDebriefingEnd.unity
     guid: 41db4490e9972e74eb2103bc73042179
   - enabled: 1
-    path: Assets/Scenes/04_lvl_1_1_TrainingDay_Underground.unity
-    guid: 4d658ca876c7dc448ad2d8393b9a54a5
+    path: Assets/Scenes/04_lvl_1_1_TrainingDay_Underground 1.unity
+    guid: dbf683bd91d1b564c8aef37a76d57472
   - enabled: 1
     path: Assets/Scenes/05_lvl_1_2_TrainingDay_Surface.unity
     guid: 438ff354a970a4c48ac9ffeaaf334478

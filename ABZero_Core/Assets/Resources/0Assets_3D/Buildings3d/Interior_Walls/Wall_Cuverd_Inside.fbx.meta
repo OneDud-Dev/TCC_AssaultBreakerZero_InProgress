@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: WallCurved1
-    second: {fileID: 2100000, guid: 22e8d23b65b8f6047a5ee639d90c894a, type: 2}
+    second: {fileID: 2100000, guid: 5c39dafdd9b63d342b29ef14ed43266b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: WallCurvedLInside
-    second: {fileID: 2100000, guid: 266479ede5ed43d469a056b292aba2e7, type: 2}
+    second: {fileID: 2100000, guid: 9b5519cf3b0741f44b8687f7caeb0926, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: WallcurvedTop
-    second: {fileID: 2100000, guid: a1831db50856baf4f889ef4cdb5509f7, type: 2}
+    second: {fileID: 2100000, guid: 5ef457a5feafa2a4a899d852e860875a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

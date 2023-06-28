@@ -35,16 +35,14 @@ namespace ABZ_Ai
             switch (aiCtrl.thisAttitudeType)
             {
                 case Ai_Controller.aiTravelType.Chaser:
-                    if (other.gameObject.CompareTag("ETargetChar")      ||
-                        other.gameObject.CompareTag("ETargetBuilding")  ||
-                        other.gameObject.CompareTag("ETargetObjective"))
+                    if (other.gameObject.CompareTag("Player") )
                     
                     {ChaserLookForEnemy(other);}
                     break;
 
 
                 case Ai_Controller.aiTravelType.Focused:
-                    if (other.gameObject.CompareTag("ETargetObjective"))
+                    if (other.gameObject.CompareTag("Player"))
                     
                     {FocusedLookForTarget(other);}
                     break;

@@ -25,5 +25,6 @@ namespace ABZ_Pc
         public float    camPivotSensitivity;
         [Header("Rotation")]
         public float    maxStamina;
+
     }
 }

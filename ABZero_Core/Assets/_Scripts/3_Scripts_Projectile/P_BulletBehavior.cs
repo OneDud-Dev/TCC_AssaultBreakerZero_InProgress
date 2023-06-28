@@ -1,3 +1,4 @@
+using ABZ_GameSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,13 +29,18 @@ namespace ABZ_Projectiles
         private void OnTriggerEnter(Collider other)
         {
             GameObject bulletHit = Instantiate(hitBulletParticle, transform.position, transform.rotation);
-            Destroy(this.gameObject);
+
+            
+            
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject,1);
             //send bullet damage data?
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             GameObject bulletHit = Instantiate(hitBulletParticle, transform.position, transform.rotation);
+            
             Destroy(this.gameObject);
         }
 

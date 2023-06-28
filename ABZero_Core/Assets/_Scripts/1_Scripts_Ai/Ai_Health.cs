@@ -10,31 +10,23 @@ namespace ABZ_Ai
 
         [SerializeField]
         private Ai_References aiData;
-        public  Game_Events   OnAiDestroyed;
+        public  Game_Events     UnityOnAiDestroyed;
+        public Game_Events      CustonEventRemoveTarget;
 
 
-
-        private void TakeDamage(int dmge)
+        public void TakeDamage(int dmge)
         {
             aiData.hP -= dmge;
-            
             if (aiData.hP <= 0)     {OnZeroHP();}
-            else                    {OnDamageReaction();   }
         }
 
-        private void OnDamageReaction()
-        {
-            /* spawn hit particles
-             * small shake to character torso bone, springlike
-             * pause shooting
-             */
-        }
-        
         
 
-        private void OnZeroHP()
+        public void OnZeroHP()
         {
-            OnAiDestroyed.Raise(this, aiData.AiReference);
+            aiData.aiRoot.SetActive(false);
+            UnityOnAiDestroyed.Raise();
+            CustonEventRemoveTarget.Raise(this, aiData.AiReference);
         }
     }
 }

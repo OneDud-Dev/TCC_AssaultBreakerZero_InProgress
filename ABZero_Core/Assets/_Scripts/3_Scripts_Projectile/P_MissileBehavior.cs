@@ -1,3 +1,4 @@
+using ABZ_GameSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,12 +50,14 @@ namespace ABZ_Projectiles
         private void OnTriggerEnter(Collider other)
         {
             Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            
             Destroy(this.gameObject, 0.05f);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            
             Destroy(this.gameObject, 0.05f);
         }
 

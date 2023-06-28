@@ -12,20 +12,22 @@ namespace ABZ_Ai
 
         //this script only sends information about projectile to listeners       
 
-        public Game_Events OnAiDamageEvent;
+        public Ai_Health aiHP;
 
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Projectile_A") ||
-                other.gameObject.CompareTag("Projectile_P"))
+            if (other.gameObject.CompareTag("Proj_P_B"))
             {
-                OnAiDamageEvent.Raise(this, other);
+                aiHP.TakeDamage(1);
             }
 
+            else if (other.gameObject.CompareTag("Proj_P_M"))
+            {
+                aiHP.TakeDamage(1);
+            }
             else
                 { return;}
-
         }
     }
 }

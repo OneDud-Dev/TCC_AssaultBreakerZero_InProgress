@@ -16,10 +16,13 @@ namespace ABZ_Levels
         public Animator Gate_R_S;
         public Animator Gate_R_B;
 
+        private int open = Animator.StringToHash("Open");
+
         public float gateCountdown;
         public float gateTargetTime;
         private bool stopCounting = true;
 
+        
 
 
 
@@ -51,10 +54,10 @@ namespace ABZ_Levels
             if (gateCountdown >= gateTargetTime)
             {
 
-                Gate_L_S.SetBool("Open", true);
-                Gate_L_B.SetBool("Open", true);
-                Gate_R_S.SetBool("Open", true);
-                Gate_R_B.SetBool("Open", true);
+                Gate_L_S.SetBool(open, true);
+                Gate_L_B.SetBool(open, true);
+                Gate_R_S.SetBool(open, true);
+                Gate_R_B.SetBool(open, true);
                 stopCounting = true;
             }
 

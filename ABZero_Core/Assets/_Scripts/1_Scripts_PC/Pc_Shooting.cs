@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 using ABZ_Weapons;
 using ABZ_GameSystems;
@@ -9,81 +10,84 @@ namespace ABZ_Pc
 {
     public class Pc_Shooting : MonoBehaviour
     {
-        public   Pc_References   pcData;
-        public   Game_Events     onBulletShot;
-        public   Game_Events     onMissileShot;
-        public   Game_Events     onDefending;
-        private  Pc_AutoTarget   pcTarget;
+        public Pc_References pcData;
+        public Game_Events onBulletShot;
+        public Game_Events onMissileShot;
+        public Game_Events onDefending;
+        private Pc_AutoTarget pcTarget;
         public GameObject ui_LaserPointer;
 
         #region Variables
 
-                 BaseEquipment   equippedLeft;
-                 BaseEquipment   equippedRight;
-                 BaseEquipment   equippedSpecial;
+        BaseEquipment equippedLeft;
+        BaseEquipment equippedRight;
+        BaseEquipment equippedSpecial;
 
         #region ENUMS
 
-        public  enum WeaponNormalTypes   { Empty, Rifle, Gauss, Laser, Sword, Axe, Hand, Shield };
-        public  enum WeaponSpecialTypes  { Empty, Missile, Mines, Cannon, Mortar }
+        public enum WeaponNormalTypes { Empty, Rifle, Gauss, Laser, Sword, Axe, Hand, Shield };
+        public enum WeaponSpecialTypes { Empty, Missile, Mines, Cannon, Mortar }
         #endregion
 
         #region Weapons type reference
-                 W_N_Empty       pEmpty;
-                 W_N_AutoRifle   pAutoRifle;
-                 W_N_Gauss       pGaus;
-                 W_N_Laser       pLaser;
+        W_N_Empty pEmpty;
+        W_N_AutoRifle pAutoRifle;
+        W_N_Gauss pGaus;
+        W_N_Laser pLaser;
 
-                 W_S_MissileLcher sMissileLaucher;
-                 W_S_Cannon      sCannon;
-                 W_S_Motar       sMortar;
-                 W_S_Mines       sMines;
-                 W_S_Empty       sEmpty;
+        W_S_MissileLcher sMissileLaucher;
+        W_S_Cannon sCannon;
+        W_S_Motar sMortar;
+        W_S_Mines sMines;
+        W_S_Empty sEmpty;
 
-                 W_M_Shield      mShield;
-                 W_M_Sword       mSword;
-                 W_M_Axe         mAxe;
+        W_M_Shield mShield;
+        W_M_Sword mSword;
+        W_M_Axe mAxe;
         #endregion
 
         #region Left
         [Header("Left")]
         public bool leftIsActive;
-        public  WeaponNormalTypes currentLeftEquip;
-        public   int     leftCurrentClip;
-        public   float   leftTimer;
-        private  bool    leftIsEmpty;
-        private  bool    isRealoadingLeftArm;
-        public   bool    isHoldingLeftArmAction;
-        public   bool    leftArmAnimationMove;
-        public  float   activateLeftAnimationTime;
-
+        public WeaponNormalTypes currentLeftEquip;
+        public int leftCurrentClip;
+        public float leftTimer;
+        private bool leftIsEmpty;
+        private bool isRealoadingLeftArm;
+        public bool isHoldingLeftArmAction;
+        public bool leftArmAnimationMove;
+        public float activateLeftAnimationTime;
+        public AudioSource leftArmSound;
         #endregion
 
         #region Secondary
         [Header("Right")]
         public bool rightIsActive;
         public WeaponNormalTypes currentRightEquip;
-      //public   int     rightCurrentClip;
-      //public   float   rightTimer;
-      //private  bool    rightIsEmpty;
-      //private  bool    isRealoadingRightEquip;
-        public   bool    isHoldingRightAction;
-        public   bool    rightArmAnimationMove;
-        public   float   activateRightAnimationTime;
+        //public   int     rightCurrentClip;
+        //public   float   rightTimer;
+        //private  bool    rightIsEmpty;
+        //private  bool    isRealoadingRightEquip;
+        public bool isHoldingRightAction;
+        public bool rightArmAnimationMove;
+        public float activateRightAnimationTime;
         #endregion
 
         #region Special
         [Header("Special")]
         public bool specialIsActive;
-        public  WeaponSpecialTypes currentSpecial;
-        public  int     specialCurrentClip;
-        public  float   specialTimer;
-        public  bool    specialIsEmpty;
-        public  bool    isRealoadingSpecial;
-        public  bool    isHoldingSpecialAction;
-        private bool    missileSpawnSide;
-        public  bool    specialAnimationMove;
-        public  float   activateSpecialAnimationTime;
+        public WeaponSpecialTypes currentSpecial;
+        public int specialCurrentClip;
+        public float specialTimer;
+        public bool specialIsEmpty;
+        public bool isRealoadingSpecial;
+        public bool isHoldingSpecialAction;
+        public bool missileSpawnSide;
+        public bool specialAnimationMove;
+        public float activateSpecialAnimationTime;
+        public AudioSource leftMSound;
+        public AudioSource rightMSound;
+
 
         #endregion
 
@@ -95,18 +99,18 @@ namespace ABZ_Pc
         private void Start()
         {
             pcTarget = pcData.pcAutoTarget;
-            
-            
+
+
             //get weapon type references
-            sEmpty          =   pcData.noSpecial;
-            pEmpty          =   pcData.noWeapon;
-            pAutoRifle      =   pcData.gunAR;
-            mShield         =   pcData.shield;
-            sMissileLaucher =   pcData.gunMissile;
-            sCannon         =   pcData.gunCannon;
-            
+            sEmpty = pcData.noSpecial;
+            pEmpty = pcData.noWeapon;
+            pAutoRifle = pcData.gunAR;
+            mShield = pcData.shield;
+            sMissileLaucher = pcData.gunMissile;
+            sCannon = pcData.gunCannon;
+
             isHoldingLeftArmAction = false;
-          //isHoldingRightAction = false;
+            //isHoldingRightAction = false;
             isHoldingSpecialAction = false;
             rightArmAnimationMove = false;
 
@@ -125,21 +129,21 @@ namespace ABZ_Pc
             SetLeftArm();
             SetSpecialPos();
 
-            if (isHoldingLeftArmAction)     { ActivateLeftArmEquip(); }
-            if (isHoldingSpecialAction)     { ActivateSpecialWeapon(); }
-           
+            if (isHoldingLeftArmAction) { ActivateLeftArmEquip(); }
+            if (isHoldingSpecialAction) { ActivateSpecialWeapon(); }
 
-            
+
+
         }
 
         #endregion
-        
+
 
 
 
 
         //_______________________________________METHODS_______________________________________
-      
+
         public void SetWeapons()
         {
             switch (currentLeftEquip)
@@ -203,20 +207,20 @@ namespace ABZ_Pc
         }
 
 
-       
+
         public void LeftEquipCooldown()
         {
-            if (equippedLeft == pEmpty)         { return; }
+            if (equippedLeft == pEmpty) { return; }
 
             if (leftTimer < equippedLeft.reloadTime + 1)
             {
                 leftTimer += Time.deltaTime;
-                
+
                 //auto reload
-                if (leftCurrentClip >= equippedLeft.magazineSize -1)
+                if (leftCurrentClip >= equippedLeft.magazineSize - 1)
                 {
                     leftIsEmpty = true; leftArmAnimationMove = false;
-                    StartCoroutine(ReloadLeftEquipCoroutine()); 
+                    StartCoroutine(ReloadLeftEquipCoroutine());
                 }
             }
         }
@@ -227,13 +231,13 @@ namespace ABZ_Pc
                 return;
             }
 
-                else if (specialTimer < equippedSpecial.reloadTime + 1)
-                {
-                    specialAnimationMove = true;
-                    specialTimer += Time.deltaTime;
-                    if (specialCurrentClip == equippedSpecial.magazineSize)
-                    { StartCoroutine(ReloadSpecialCoroutine()); }
-                }
+            else if (specialTimer < equippedSpecial.reloadTime + 1)
+            {
+                specialAnimationMove = true;
+                specialTimer += Time.deltaTime;
+                if (specialCurrentClip == equippedSpecial.magazineSize)
+                { StartCoroutine(ReloadSpecialCoroutine()); }
+            }
         }
 
 
@@ -257,7 +261,7 @@ namespace ABZ_Pc
             else if (!leftArmAnimationMove && leftIsEmpty)
             {
                 if (activateLeftAnimationTime > 0.22)
-                {activateLeftAnimationTime = 0.22f;}
+                { activateLeftAnimationTime = 0.22f; }
 
                 if (activateLeftAnimationTime > 0)
                 {
@@ -297,12 +301,13 @@ namespace ABZ_Pc
         {
             if (!isHoldingLeftArmAction)
             {
-                isHoldingLeftArmAction  = true;
+                isHoldingLeftArmAction = true;
             }
             else
-            { 
-                isHoldingLeftArmAction  = false; }
+            {
+                isHoldingLeftArmAction = false;
             }
+        }
         public void ActivateLeftArmEquip()
         {
             if (leftIsActive)
@@ -315,16 +320,17 @@ namespace ABZ_Pc
         }
         public IEnumerator LeftEquipCoroutine()
         {
-            
+
             if (leftTimer > equippedLeft.rateOfFire)
             {
                 leftTimer = 0f;
                 leftCurrentClip += 1;
+                leftArmSound.Play();
                 ((IShoot)equippedLeft).SpawnProjectile(pcData.spawn_Rifle_Left);
 
                 if (leftCurrentClip >= equippedLeft.magazineSize - 1)
-                { 
-                    leftIsEmpty = true; 
+                {
+                    leftIsEmpty = true;
                 }
             }
 
@@ -358,11 +364,13 @@ namespace ABZ_Pc
         public void HoldToUseRightArm()
         {
             if (!isHoldingRightAction)
-            { isHoldingRightAction = true;
+            {
+                isHoldingRightAction = true;
                 rightArmAnimationMove = true;
             }
             else
-            { isHoldingRightAction = false;
+            {
+                isHoldingRightAction = false;
                 rightArmAnimationMove = false;
             }
         }
@@ -383,7 +391,7 @@ namespace ABZ_Pc
                 }
             }
 
-            
+
             if (rightArmAnimationMove)
             {
                 if (activateRightAnimationTime <= 0.22)
@@ -419,14 +427,14 @@ namespace ABZ_Pc
         }
         public void ActivateSpecialWeapon()
         {
-          
+
             if (!specialIsEmpty)
             {
                 isRealoadingSpecial = false;
 
                 StartCoroutine(SpecialWeaponCoroutine());
             }
-            
+
         }
         private IEnumerator SpecialWeaponCoroutine()
         {
@@ -438,7 +446,7 @@ namespace ABZ_Pc
                 ShootEquipedSpecial();
 
                 if (specialCurrentClip == equippedSpecial.magazineSize)
-                    { specialIsEmpty = true; specialAnimationMove = false; }
+                { specialIsEmpty = true; specialAnimationMove = false; }
                 yield return null;
             }
         }
@@ -453,7 +461,7 @@ namespace ABZ_Pc
 
                 specialIsEmpty = false;
                 isRealoadingSpecial = false;
-                
+
                 yield return null;
             }
         }
@@ -467,36 +475,40 @@ namespace ABZ_Pc
                 case WeaponSpecialTypes.Empty:
                     break;
                 case WeaponSpecialTypes.Missile:
-                    switch (pcTarget.hasTarget)  
+                    switch (pcTarget.hasTarget)
                     {
                         case true:
                             if (missileSpawnSide)
                             {
-                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Left, pcTarget.currentTarget);
                                 missileSpawnSide = false;
+                                leftMSound.Play();
+                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Left, pcTarget.currentTarget);
                             }
-                            else
+                            else if (!missileSpawnSide)
                             {
-                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Right, pcTarget.currentTarget);
                                 missileSpawnSide = true;
+                                rightMSound.Play();
+                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Right, pcTarget.currentTarget);
                             }
                             break;
                         case false:
                             if (missileSpawnSide)
                             {
-                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Left);
                                 missileSpawnSide = false;
+                                leftMSound.Play();
+                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Left);
                             }
-                            else
+                            else if (!missileSpawnSide)
                             {
-                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Right);
                                 missileSpawnSide = true;
+                                rightMSound.Play();
+                                ((IShoot)equippedSpecial).SpawnProjectile(pcData.spawn_S_M_Right);
                             }
 
                             break;
                     }
 
-                    
+
                     break;
                 case WeaponSpecialTypes.Mines:
                     break;
@@ -508,10 +520,10 @@ namespace ABZ_Pc
             }
         }
         #endregion
-        
+
         private void SetSpecialPos()
         {
-            if (!specialAnimationMove)
+            if (!specialAnimationMove && !specialIsEmpty)
             {
                 if (activateSpecialAnimationTime > 0)
                 {
@@ -520,21 +532,46 @@ namespace ABZ_Pc
                     { activateSpecialAnimationTime = 0f; }
 
                     pcData.pcAnimeScript.DeactivateSpecialArm(activateSpecialAnimationTime);
-
-                    specialAnimationMove = true;
                 }
             }
 
-            if (specialAnimationMove)
+
+            else if (!leftArmAnimationMove && specialIsEmpty)
+            {
+                if (activateSpecialAnimationTime > 0.22)
+                { activateSpecialAnimationTime = 0.22f; }
+
+                if (activateSpecialAnimationTime > 0)
+                {
+                    activateSpecialAnimationTime -= Time.deltaTime;
+                    if (activateSpecialAnimationTime < 0)
+                    { activateSpecialAnimationTime = 0f; }
+
+                    pcData.pcAnimeScript.DeactivateSpecialArm(activateSpecialAnimationTime);
+                }
+            }
+
+            if (leftArmAnimationMove && !specialIsEmpty)
             {
                 if (activateSpecialAnimationTime <= 0.22)
                 {
                     activateSpecialAnimationTime += Time.deltaTime;
                     if (activateSpecialAnimationTime > 0.22f)
                     { activateSpecialAnimationTime = 0.22f; }
-                    pcData.pcAnimeScript.DeactivateSpecialArm(activateSpecialAnimationTime);
 
-                    specialAnimationMove = false;
+                    pcData.pcAnimeScript.ActivateSpecialArm(activateSpecialAnimationTime);
+                }
+            }
+
+            else if (leftArmAnimationMove && specialIsEmpty)
+            {
+                if (activateSpecialAnimationTime <= 0.22)
+                {
+                    activateSpecialAnimationTime += Time.deltaTime;
+                    if (activateSpecialAnimationTime > 0.22f)
+                    { activateSpecialAnimationTime = 0.22f; }
+
+                    pcData.pcAnimeScript.ActivateSpecialArm(activateSpecialAnimationTime);
                 }
             }
         }

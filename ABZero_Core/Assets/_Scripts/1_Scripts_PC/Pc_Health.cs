@@ -9,7 +9,7 @@ namespace ABZ_Pc
     {
         public Pc_References pcData;
 
-        #region MyRegion
+        #region Variable
 
         [Header("text refs")]
         public RawImage indicatorGreen;
