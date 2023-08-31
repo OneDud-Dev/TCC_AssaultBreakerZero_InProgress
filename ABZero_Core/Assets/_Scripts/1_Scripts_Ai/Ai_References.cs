@@ -1,3 +1,4 @@
+using ABZ_Pc;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,17 +10,20 @@ namespace ABZ_Ai
     {
         public int  hP;
         public bool isDead;
-
+        public Pc_References pcData;
 
 
         //===========================================
         [Header("--------Character details-------")]
         public string Model;
-        public int    pointValue;
-        public string pilotName;
-        public string squadronName;
-        public GameObject AiReference;
-
+        public int          pointValue;
+        public string       pilotName;
+        public string       squadronName;
+        public Animator     aiAnimator;
+        public GameObject   AiReference;
+        public int          speedAttack;
+        public int          speedPatrolling;
+        public int          speedTraveling;
 
         #region Scripts
         [Header("--------scripts-------------")]

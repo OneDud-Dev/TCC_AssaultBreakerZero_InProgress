@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace ABZ_Ai
 {
@@ -14,15 +15,21 @@ namespace ABZ_Ai
         private Ai_Movement     aiMov;
         private Ai_Combat       aiCombt;
         private Ai_Aiming       aiAim;
+        private NavMeshAgent    aiAgent;
+
+        public Transform upperPartsPivot;
+        public Transform lowerPartsPivot;
 
         [Header("States")]
-        public aiType       thisAiType;
-        public aiTravelType thisAttitudeType;
-        public aiState      currentState;
 
-        public enum aiType      { Enemy, Companion, Allied }
-        public enum aiTravelType{ Chaser, Focused, Patroler }
-        public enum aiState     { Traveling, Attacking, Chasing }
+        public aiSide       thisAiType;
+        public aiNature     thisAiNature;
+        public aiState      ThisAiState;
+
+        
+        public enum aiSide      { Enemy, Companion, Allied }
+        public enum aiNature    { Chaser, Focused, Patroler }
+        public enum aiState     { Moving, Attacking, Chasing}
 
         #endregion
 
@@ -32,44 +39,44 @@ namespace ABZ_Ai
         #region Unity
         private void Start()
         {
-            aiMov =     data.aiMov;
+            aiMov   =   data.aiMov;
             aiCombt =   data.aiCombat;
-            aiAim =     data.aiAim;
-
+            aiAim   =   data.aiAim;
+            aiAgent =   data.aiAgent;
+            
+            if (thisAiNature == aiNature.Patroler)
+                aiAgent.speed = 5;
+            
         }
 
         private void Update()
         {
-
             SetObjectPosition(data.bodyPos.transform, transform);
             SetObjectPosition(data.aiPivot, transform);
-            RotateObjOverTime(data.upperBodyPivot.transform, transform, 2);
-            RotateObjOverTime(data.bodyPos.transform, transform, 2);
+            
+            if (!data.pcData.gameIsRunning)
+                return;
 
-
-            switch (currentState)
+            switch (ThisAiState)
             {
-                case aiState.Traveling:
-                    switch (thisAttitudeType)
+                case aiState.Moving:
+                    switch (thisAiNature)
                     {
-                        case aiTravelType.Chaser:
+                        case aiNature.Chaser:
                             aiMov.TravelMovement();
                             IfEnemiesChangeToAttack();
                             break;
 
 
-                        case aiTravelType.Focused:
+                        case aiNature.Focused:
                             aiMov.TravelMovement();
+
+                        break;
+
+                        case aiNature.Patroler:
+                            aiMov.PatrollingMovement();
                             IfEnemiesChangeToAttack();
                             break;
-
-                        #region unused
-                        case aiTravelType.Patroler:
-                            break;
-                        default:
-                            break;
-
-                            #endregion
                     }
 
                     break;
@@ -78,49 +85,35 @@ namespace ABZ_Ai
 
 
                 case aiState.Attacking:
-                    IfNoEnemtChangeToTraveling();
-                    if (aiCombt.currentTarget == null)
+                    switch (thisAiNature)
                     {
-                        aiMov.SimpleOrbitMovement(aiCombt.enemyTargets[aiCombt.enemyIndex].gameObject.transform.position,
-                                                    aiMov.orbitRadius);
-                        data.aiAim.PointUpperBodyToTarget(aiCombt.enemyTargets[aiCombt.enemyIndex].gameObject.transform.position, data.upperBodyPivot);
-                        aiCombt.AiAttack();
-                    }
-                    else
-                    {
-                        aiMov.SimpleOrbitMovement(aiCombt.currentTarget.gameObject.transform.position,
-                                                    aiMov.orbitRadius);
-                        data.aiAim.PointUpperBodyToTarget(aiCombt.currentTarget.gameObject.transform.position, data.upperBodyPivot);
-                        aiCombt.AiAttack();
-                    }
+                        case aiNature.Chaser:
+                            IfNoEnemtChangeToTraveling();
+                            ChaserAttackPattern();
+                            break;
 
+                        case aiNature.Patroler:
+                            IfNoEnemtChangeToPatrolling();
+                            PatrollerAttackPattern();
+                            break;
+
+
+                        case aiNature.Focused:
+                            break;
+                    }
 
                     break;
-
-
 
 
                 case aiState.Chasing:
                     break;
-
-
-
-
-                default:
-                    break;
             }
-
-
-        }
-
-        private void FixedUpdate()
-        {
             
-
         }
+
         #endregion
 
-
+        
 
 
         #region Ctrl Methods
@@ -128,8 +121,12 @@ namespace ABZ_Ai
 
         private void IfEnemiesChangeToAttack()
         {
-            if (aiCombt.enemyTargets == null || aiCombt.enemyTargets.Count <= 0) { return; }
-            else if (aiCombt.enemyTargets.Count > 0) { currentState = aiState.Attacking; }
+            if (aiCombt.enemyTargets == null || aiCombt.enemyTargets.Count <= 0)
+                { return; }
+            else if (aiCombt.enemyTargets.Count > 0)
+            {
+                aiAgent.speed = data.speedAttack;
+                ThisAiState = aiState.Attacking;}
 
         }  //change to attacking enemy if list of enemies change
 
@@ -137,8 +134,65 @@ namespace ABZ_Ai
         private void IfNoEnemtChangeToTraveling()
         {
             if (aiCombt.enemyTargets == null || aiCombt.enemyTargets.Count <= 0)
-            { currentState = aiState.Traveling; }
+            
+            {   aiAgent.speed = data.speedTraveling;
+                ThisAiState = aiState.Moving; }
         }
+        private void IfNoEnemtChangeToPatrolling() //only speed change
+        {
+            if (aiCombt.enemyTargets == null || aiCombt.enemyTargets.Count <= 0)
+
+            {
+                aiAgent.speed = data.speedPatrolling;
+                ThisAiState = aiState.Moving;
+            }
+        }
+
+        public void ChaserAttackPattern()
+        {
+            IfNoEnemtChangeToTraveling();
+
+            if (aiCombt.currentTarget == null)
+            {  
+                Debug.Log("Chaser has no enemy to orbit");
+                if (aiCombt.enemyTargets == null)
+                { ThisAiState = aiState.Moving; }
+                else
+                { aiCombt.currentTarget = aiCombt.enemyTargets[0]; }
+                return;
+            }
+            else
+            {
+                aiMov.SimpleOrbitMovement(aiCombt.currentTarget.gameObject.transform.position,
+                                            aiMov.orbitRadius);
+                aiCombt.AiAttack();
+            }
+        }
+        private void PatrollerAttackPattern()
+        {
+            IfNoEnemtChangeToPatrolling();
+            if (aiCombt.currentTarget == null)
+            {
+                Debug.Log("Patroller has no enemy to orbit");
+                if (aiCombt.enemyTargets == null)
+                { ThisAiState = aiState.Moving; }
+                else
+                { aiCombt.currentTarget = aiCombt.enemyTargets[0]; }
+                return;
+            }
+            else
+            {
+                aiMov.SimpleOrbitMovement(aiCombt.currentTarget.gameObject.transform.position,
+                                          aiMov.orbitRadius);
+                aiCombt.AiAttack();
+            }
+        }
+
+
+
+        
+
+
 
 
         public void SetObjectPosition(Transform obj, Transform target)
@@ -146,12 +200,7 @@ namespace ABZ_Ai
             obj.position = target.position;
         }
 
-        public void RotateObjOverTime(Transform bodyObj, Transform target, float rotationSpeed)
-        {
-            bodyObj.rotation = Quaternion.RotateTowards(bodyObj.rotation,
-                                                        target.rotation,
-                                                        rotationSpeed);
-        }
+
 
 
         public void aiDestroyed()

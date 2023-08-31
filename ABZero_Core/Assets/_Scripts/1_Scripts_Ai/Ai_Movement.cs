@@ -15,10 +15,11 @@ namespace ABZ_Ai
         public bool travelDebug;
         public bool orbitDebug;
 
-       
+
 
         [Header("--------PathFinding----------------")]
         public bool hasNextWalkpoint;
+        public bool travelLock;
         public float confirmationDistance;
         public float distanceToNextPos;
         public Vector3 currentDestination;
@@ -52,7 +53,7 @@ namespace ABZ_Ai
             hasNextWalkpoint = travelingPathNodes.Count > 0;
         }
 
-     
+
         #endregion
 
 
@@ -76,51 +77,6 @@ namespace ABZ_Ai
                                                 +
                                                 _center;
         }
-
-        //----------------------------------------------------------------------------------
-
-        public void TravelMovement()
-        {
-            if (hasNextWalkpoint)
-            {
-                currentDestination = travelingPathNodes[travelingIndex].position;
-                aiAgent.SetDestination(currentDestination);
-                distanceToNextPos = data.aiMov.GetNextPointDistance();
-
-                if (travelingIndex < travelingPathNodes.Count - 1)
-                {
-                    if (distanceToNextPos < confirmationDistance)
-                    {
-                        PathIndexIncrement();
-                    }
-                }
-                else
-                {
-                    hasNextWalkpoint = false;
-                    return;
-                }
-            }
-            else
-            {
-                Debug.Log("Node list empty, NPC is trying to move to node");
-                return;
-            }
-        }
-
-
-
-        public void PathIndexIncrement() => travelingIndex++;
-        public float GetNextPointDistance() => (data.aiPos.position - currentDestination).magnitude;
-
-
-
-        #endregion
-
-
-
-
-        #region Coroutines
-
         private IEnumerator ChangeOrbitAfterTime(Vector3 center, float Radius)
         {
             orbitTimer += Time.deltaTime;
@@ -134,6 +90,79 @@ namespace ABZ_Ai
             }
         }
 
+        //----------------------------------------------------------------------------------
+
+        public void TravelMovement()
+        {
+            if (hasNextWalkpoint)
+            {
+                //if (!travelLock)
+                //{
+                //    travelLock = true;
+                //}
+
+                currentDestination = travelingPathNodes[travelingIndex].position;
+                aiAgent.SetDestination(currentDestination);
+                distanceToNextPos = GetNextPointDistance();
+
+                if (travelingIndex < travelingPathNodes.Count - 1)
+                {
+                    if (distanceToNextPos < confirmationDistance)
+                    {
+                        PathIndexIncrement();
+                        travelLock = false;
+                    }
+                }
+                else
+                {
+                    hasNextWalkpoint = false;
+                    Debug.Log("Node list empty, NPC is trying to move to node");
+                    return;
+                }
+            }
+        }
+        public void PatrollingMovement()
+        {
+            if (!hasNextWalkpoint)
+            { Debug.Log("forgot to set patrolling nodes"); return; }
+
+            if (!travelLock)
+            {
+                StartCoroutine(WaitNextDestination());
+                //change destination
+            }
+            
+            distanceToNextPos = GetNextPointDistance();
+
+            if (travelingIndex < travelingPathNodes.Count - 1)
+            {
+                if (distanceToNextPos < confirmationDistance)
+                {
+                    PathIndexIncrement();
+                    travelLock = false;
+                }
+            }
+            else
+            { travelingIndex = 0; }
+        }
+
+
+
+        public void PathIndexIncrement()
+        {
+            travelingIndex++;
+        }
+
+        public float GetNextPointDistance() => (data.aiPos.position - currentDestination).magnitude;
+
+        public IEnumerator  WaitNextDestination()
+        {
+            yield return new WaitForSeconds(3f);
+            currentDestination = travelingPathNodes[travelingIndex].position;
+            aiAgent.SetDestination(currentDestination);
+
+            yield break;
+        }
 
         #endregion
     }

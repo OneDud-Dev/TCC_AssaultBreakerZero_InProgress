@@ -11,7 +11,7 @@ namespace ABZ_Dialogues
     {
         [Header("Dialogue Setup")]
         public float firstLineDelay;
-        public float readLineDelay;
+        public float nextLineDelay;
         public float txtSpeed;
         public bool[] dialogueLock;
 
@@ -55,68 +55,100 @@ namespace ABZ_Dialogues
         #endregion
 
 
-        private void FixedUpdate()
+        private void Update()
         {
             switch (StartThisDialogue)
             {
                 case DialogueState.NotYet :
-                    StartCoroutine(DelayFirstLine(firstLineDelay));
+                    StartCoroutine(Delay(firstLineDelay));
                     break;
                 //=============================================Game has Started======================
                 case DialogueState.Started:
+                    
                     LockAndRead(0,startLines, startIndex);
-
+                    
                     break;
 
                 //=============================================Got to the right Corridor trigger, go defend===
                 case DialogueState.Range:
+                    if (!dialogueLock[1]) 
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty; ; }
                     LockAndRead(1, enteredShootingRangeLines, rangeIndex);
                     break;
 
                 //=============================================Used shield, now go shoot======================
                 case DialogueState.Defended:
+                    if (!dialogueLock[2])
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(2, usedTheShieldLines, shieldIndex);
                     break;
                 
                 //=============================================Shot all targets, now shoot missile============
                 case DialogueState.Fliped:
+                    if (!dialogueLock[3])
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(3, bulletTargetLines, targetIndex);
                     break;
 
                 //=============================================Exploded the target, now go back================
                 case DialogueState.Exploded:
+                    if (!dialogueLock[4])
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(4, MissileTargetLines, missileIndex);
                     break;
 
                 //=============================================Fuck we are under attack, go to east gate======
                 case DialogueState.AttackSounds:
+                    if (!dialogueLock[5])
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(5, UnderAttackLines, underAttackIndex);
                     break;
 
                 //=============================================Gate is opening================================
                 case DialogueState.SawElevators:
+                    if (!dialogueLock[9]) 
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(9, elevator2Lines, elvtor2Index);
                     break;
 
-
                 //=============================================Gate is opening================================
                 case DialogueState.ArrivedGate:
+                    if (!dialogueLock[9]) 
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(6, arrivedAtGatesLines, atGateIndex);
                     break;
                 //=============================================This side is ok, lets go=======================
                 case DialogueState.GateOpened:
+                    if (!dialogueLock[6]) 
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(7, gateOpenLines, pastGateIndex);
                     break;
                 //=============================================We will arrive at a forward base, and end level
                 case DialogueState.GotOutside:
+                    if (!dialogueLock[7]) 
+                    { StopAllCoroutines(); txtDialogueBox.text = string.Empty;}
                     LockAndRead(8, outsideLines, outsideIndex);
                     break;
             }
+            
+        }
+
+        private void FixedUpdate()
+        {
         }
 
         
         #region Dialogue display methods
-        public IEnumerator ReadLine(string[] _dialogue, int _index)
+        private void LockAndRead(int _LockIndex, string[] _LineToRead, int _LineIndex)
+        {
+            if (!dialogueLock[_LockIndex])
+            {
+                StartCoroutine(ReadLine(_LineToRead, _LineIndex));
+
+                dialogueLock[_LockIndex] = true;
+            }
+        }
+        private IEnumerator ReadLine(string[] _dialogue, int _index)
         {
             foreach (char _char in _dialogue[_index].ToCharArray())
             {
@@ -132,14 +164,14 @@ namespace ABZ_Dialogues
             if (i < _d.Length - 1)
             {
                 i++;
-                yield return new WaitForSeconds(readLineDelay);
+                yield return new WaitForSeconds(nextLineDelay);
                 txtDialogueBox.text = string.Empty;
                 StartCoroutine(ReadLine(_d, i));
             }
 
             else
             {
-                yield return new WaitForSeconds(readLineDelay);
+                yield return new WaitForSeconds(nextLineDelay);
                 txtDialogueBox.text = string.Empty;
             }
         }
@@ -147,21 +179,12 @@ namespace ABZ_Dialogues
 
         #endregion
     
-        private IEnumerator DelayFirstLine(float _seconds)
+        private IEnumerator Delay(float _seconds)
         {
             yield return new WaitForSeconds(_seconds);
             StartThisDialogue = DialogueState.Started;
         }
 
-        private void LockAndRead(int _LockIndex, string[] _LineToRead, int _LineIndex)
-        {
-            if (!dialogueLock[_LockIndex])
-            {
-                StartCoroutine(ReadLine(_LineToRead, _LineIndex));
-
-                dialogueLock[_LockIndex] = true;
-            }
-        }
 
 
         public void SwitchState2() => StartThisDialogue = DialogueState.Range;
@@ -169,11 +192,11 @@ namespace ABZ_Dialogues
         public void SwitchState4() => StartThisDialogue = DialogueState.Fliped;
         public void SwitchState5() => StartThisDialogue = DialogueState.Exploded;
         public void SwitchState6() => StartThisDialogue = DialogueState.AttackSounds;
+        public void SwitchState10() => StartThisDialogue = DialogueState.SawElevators;
         public void SwitchState7() => StartThisDialogue = DialogueState.ArrivedGate;
         public void SwitchState8() => StartThisDialogue = DialogueState.GateOpened;
         public void SwitchState9() => StartThisDialogue = DialogueState.GotOutside;
 
-        public void SwitchState10() => StartThisDialogue = DialogueState.SawElevators;
 
 
 

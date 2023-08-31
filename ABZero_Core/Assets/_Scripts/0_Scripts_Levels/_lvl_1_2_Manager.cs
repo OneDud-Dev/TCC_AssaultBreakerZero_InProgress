@@ -1,7 +1,7 @@
 using ABZ_Pc;
-using ABZ_Ai;
+using ABZ_Ui;
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ABZ_GameSystems;
@@ -13,15 +13,13 @@ namespace ABZ_Levels
         public bool levelHasEnded;
         public Pc_References pcData;
         public GameObject lv1Dialogues;
+        public Ui_HUD_Timer playTime;
         public int enemiesDefeated;
         public GameObject lvl1_2_OST;
 
         public Game_Events EventEnding;
-
-        private void Awake()
-        {
-            
-        }
+        public float t = 0;
+        
 
         private void Start()
         {
@@ -30,7 +28,13 @@ namespace ABZ_Levels
             Instantiate(lvl1_2_OST, transform.position, transform.rotation);
         }
 
+        private void Update()
+        {
 
+            if (levelHasEnded) { EndLevel(); ; }
+            
+
+        }
 
 
 
@@ -39,24 +43,22 @@ namespace ABZ_Levels
         {
             enemiesDefeated += 1;
 
-            if (enemiesDefeated >= 11)
+            if (enemiesDefeated >= 9)
             {
-                EndLevel();
+                levelHasEnded = true;
             }
         }
 
         public void EndLevel()
         {
-            if (levelHasEnded)
-            {
-                EventEnding.Raise();
-                float t = 0;
-                t += Time.deltaTime;
+            
+            EventEnding.Raise();
+            playTime.EndTimer();
+            t += Time.deltaTime;
 
-                if (t >= 10)
-                {
-                    SceneManager.LoadScene("01_StartScreen 1");
-                }
+            if (t >= 10)
+            {
+                SceneManager.LoadScene("01_StartScreen 1");
             }
         }
 

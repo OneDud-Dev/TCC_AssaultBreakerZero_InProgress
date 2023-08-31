@@ -19,14 +19,12 @@ namespace ABZ_GameSystems
 
         public void NoCursor()
         {
-            Debug.Log("no cursor");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void YesCursor()
         {
-            Debug.Log("yesCursor");
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }

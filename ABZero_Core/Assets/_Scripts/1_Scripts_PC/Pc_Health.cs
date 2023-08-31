@@ -26,13 +26,44 @@ namespace ABZ_Pc
                 { indicatorGreen.gameObject.SetActive(true);}
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
             switch (pcData.gameIsRunning)
             {
                 case false: break;
                 case true:
-                    if (collision.gameObject.CompareTag("EnemyBullet"))
+                    if (other.gameObject.CompareTag("Projectile_E"))
+                    {
+                        pcData.pcCtrl.hp--;
+
+                        if (pcData.pcCtrl.hp == 11) //Blue
+                        {
+                            indicatorGreen.gameObject.SetActive(false);
+                            indicatorBlue.gameObject.SetActive(true);
+                        }
+                        else if (pcData.pcCtrl.hp <= 8 && pcData.pcCtrl.hp >= 5)
+                        {
+                            indicatorBlue.gameObject.SetActive(false);
+                            indicatorYello.gameObject.SetActive(true);
+                        }
+                        else if (pcData.pcCtrl.hp <= 4 && pcData.pcCtrl.hp >= 0)
+                        {
+                            indicatorYello.gameObject.SetActive(false);
+                            indicatorRed.gameObject.SetActive(true);
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+
+            switch (pcData.gameIsRunning)
+            {
+                case false: break;
+                case true:
+                    if (collision.gameObject.CompareTag("Projectile_E"))
                         {
                             pcData.pcCtrl.hp--;
 

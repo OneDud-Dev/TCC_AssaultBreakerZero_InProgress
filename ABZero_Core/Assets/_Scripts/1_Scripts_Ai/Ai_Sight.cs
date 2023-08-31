@@ -32,29 +32,27 @@ namespace ABZ_Ai
 
         private void OnTriggerEnter(Collider other)
         {
-            switch (aiCtrl.thisAttitudeType)
+            switch (aiCtrl.thisAiNature)
             {
-                case Ai_Controller.aiTravelType.Chaser:
+                case Ai_Controller.aiNature.Chaser:
                     if (other.gameObject.CompareTag("Player") )
                     
-                    {ChaserLookForEnemy(other);}
-                    break;
+                        {ChaserLookForEnemy(other);}
+                        break;
 
 
-                case Ai_Controller.aiTravelType.Focused:
+                case Ai_Controller.aiNature.Focused:
                     if (other.gameObject.CompareTag("Player"))
                     
-                    {FocusedLookForTarget(other);}
-                    break;
+                        {FocusedLookForTarget(other);}
+                        break;
 
+                case Ai_Controller.aiNature.Patroler:
+                    if (other.gameObject.CompareTag("Player"))
 
-                #region Unused
-                case Ai_Controller.aiTravelType.Patroler:
-                    break;
-                default:
-                    break;
-
-                #endregion
+                        { PatrollerLookForTarget(other); }
+                        break;
+   
             }
         }
 
@@ -80,7 +78,7 @@ namespace ABZ_Ai
         }
 
 
-        private void FocusedLookForTarget(Collider _char)
+        private void FocusedLookForTarget(Collider _char) //change to List<GameObject> of target objectives
         {
             if (aiCombat.enemyTargets.Count == 0 && !_char.CompareTag("Player"))
             {
@@ -99,9 +97,18 @@ namespace ABZ_Ai
 
         private void PatrollerLookForTarget(Collider _char)
         {
-            //chase then return
+            if (aiCombat.enemyTargets.Count == 0)
+            {
+                aiCombat.enemyTargets.Add(_char.gameObject);
+                aiCombat.currentTarget = _char.gameObject;
+            }
+
+            else if (aiCombat.enemyTargets.Count > 0)
+            {
+                if (aiCombat.enemyTargets.Contains(_char.gameObject))
+                { return; }
+                aiCombat.enemyTargets.Add(_char.gameObject);
+            }
         }
-
-
     }
 }

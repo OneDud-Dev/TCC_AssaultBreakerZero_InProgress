@@ -3,7 +3,8 @@
     "rootNamespace": "ABZ_Ai",
     "references": [
         "GUID:d1354e6854968be4eb14c72142f4d58b",
-        "GUID:395a84304c01d24458b7ba589f96b214"
+        "GUID:395a84304c01d24458b7ba589f96b214",
+        "GUID:57a88c7cac09fc241b237b6c639b8ee5"
     ],
     "includePlatforms": [
         "Editor",

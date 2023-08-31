@@ -21,7 +21,7 @@ MonoBehaviour:
   strafeWalk: 13
   strafeRun: 17
   strafeBoost: 24
-  bodyPivotRotNormal: 3
-  bodyPivotRotBoosting: 3
+  bodyPivotRotNormal: 10
+  bodyPivotRotBoosting: 8
   camPivotSensitivity: 0.02
   maxStamina: 100

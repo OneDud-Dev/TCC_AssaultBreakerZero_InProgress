@@ -100,9 +100,10 @@ namespace ABZ_Pc
                 if (closestTarget == _enemy)    {closestTarget = null;}
                                                 _enemy.GetComponent<Ui_HUD_Targets>().DeactivateTargets();
                                                 enemiesOnRange.Remove(_enemy);
+
+                GetClosestEnemy(pcData.mainPivot);
             }
             //target is disasable by enemy_ctrl when destroyed
-            //This method has to be called by event when any enemy is destroyed
         }
 
         public void OnEventEnemyDestroyed(Component sender, object _enemy)
@@ -110,7 +111,7 @@ namespace ABZ_Pc
             GameObject enemy = (GameObject)_enemy;
             
             if (!enemiesOnRange.Contains(enemy))
-            { return; }//se não tiver, voltar
+                                            { return; }//se não tiver, voltar
 
             else
             {
@@ -118,60 +119,44 @@ namespace ABZ_Pc
                 if (closestTarget == enemy) { closestTarget = null; }
                 enemy.GetComponent<Ui_HUD_Targets>().DeactivateTargets();
                 enemiesOnRange.Remove(enemy);
+
+                GetClosestEnemy(pcData.mainPivot);
             }
         }
         private void GetClosestEnemy(Transform playerPos)
         {
             float distanceTtoP;
             float shortestD = 1000;
-            
-            if (enemiesOnRange.Count <= 0)
+
+            switch (enemiesOnRange.Count)
             {
-                closestTarget = null;
-                currentTarget = null;
-                hasTarget = false;
-            }
-
-            else if (enemiesOnRange.Count == 1)
-            {
-                hasTarget = true;
-                closestTarget = enemiesOnRange[0];
-
-            }
-
-            else if (enemiesOnRange.Count > 1)
-            {
-                foreach (GameObject item in enemiesOnRange)
-                {
-                    distanceTtoP = Vector3.Distance(playerPos.position, item.transform.position);
-                    if (distanceTtoP < shortestD)
-                    {
-                        shortestD = distanceTtoP;
-                        closestTarget = item;
-                    }
-                }
-            }
-            ChangeCurrentTargetToClosest();
-        }
-       
-
-
-        public void ChangeCurrentTargetToClosest()
-        {
-            if (currentTarget == null && closestTarget == null)
-            {                return;            }
-
-            if (!enemiesOnRange.Contains(currentTarget))
-            {
-                currentTarget = null;
-
-                if (closestTarget != null)
-                {
+                case <= 0:
+                    //closestTarget = null;
+                    //currentTarget = null;
+                    hasTarget = false;
+                    break;
+                case 1:
+                    closestTarget = enemiesOnRange[0];
                     currentTarget = closestTarget;
                     SetEnemyTargetType(currentTarget, Ui_HUD_Targets.TargetType.Main);
-                }
+                    break;
+                case >1:
+                    foreach (GameObject item in enemiesOnRange)
+                    {
+                        distanceTtoP = Vector3.Distance(playerPos.position, item.transform.position);
+                        if (distanceTtoP < shortestD)
+                        {
+                            shortestD = distanceTtoP;
+                            closestTarget = item;
+                        }
+                    }
+
+                    currentTarget = closestTarget;
+                    SetEnemyTargetType(currentTarget, Ui_HUD_Targets.TargetType.Main);
+                    break;
             }
         }
+      
        
 
 

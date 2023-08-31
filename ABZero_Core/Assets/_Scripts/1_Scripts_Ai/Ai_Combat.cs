@@ -62,12 +62,12 @@ namespace ABZ_Ai
         private void IfEnemiesChangeToAttack()
         {
             if (currentTarget == null)                  { return; }
-            else  { data.aiCtrl.currentState = Ai_Controller.aiState.Attacking; }
+            else  { data.aiCtrl.ThisAiState = Ai_Controller.aiState.Attacking; }
         }
         private void IfNoEnemtChangeToTraveling()
         {
             if (currentTarget != null)                 { return; }
-            else { data.aiCtrl.currentState = Ai_Controller.aiState.Traveling; }
+            else { data.aiCtrl.ThisAiState = Ai_Controller.aiState.Moving; }
         }
         public GameObject GetClosestTargetFromEnemyList()
         {
