@@ -8,21 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/01_StartScreen.unity
     guid: 97d0e8f0ba6a5864990bfb04969b8b69
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/02_MissionBriefingStart.unity
     guid: 4730ebb209d0cfb40b301c1ccf5063e1
-  - enabled: 0
-    path: Assets/Scenes/03_MissionDebriefingEnd.unity
-    guid: 41db4490e9972e74eb2103bc73042179
   - enabled: 1
-    path: Assets/Scenes/04_lvl_1_1_TrainingDay_Underground 1.unity
+    path: Assets/Scenes/04_lvl_1_1_TrainingDay_Underground.unity
     guid: dbf683bd91d1b564c8aef37a76d57472
   - enabled: 1
     path: Assets/Scenes/05_lvl_1_2_TrainingDay_Surface.unity
     guid: 438ff354a970a4c48ac9ffeaaf334478
-  - enabled: 0
-    path: Assets/Scenes/06_lvl_2___Pursuit.unity
-    guid: 0da8272b7280d6b4fa6d6676af366bc2
+  - enabled: 1
+    path: Assets/Scenes/02_MissionBriefingEnding.unity
+    guid: 83d3da5ecc9ac1b4f8bde8bce69e266c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 7381343926dda84438837d78d17a2194,
       type: 2}

@@ -1,5 +1,6 @@
 using ABZ_GameSystems;
 using ABZ_Pc;
+using ABZ_Ui;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace ABZ_Levels
     public class Lvl1_1_Manager : MonoBehaviour
     {
         public Pc_References pcData;
+        public SO_LevelBriefing levelBriefingTime;
         public int  HitTargets;
         public bool allTargetFliped;
         public bool targetExploded;

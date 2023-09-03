@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using UnityEngine.SceneManagement;
 using ABZ_GameSystems;
 
@@ -10,7 +6,7 @@ namespace ABZ_Ui
 {
     public class Ui_StartMenu : MonoBehaviour
     {
-        public Game_AudioController audio;
+        public Game_AudioController _audio;
 
         public Canvas Cvs_Splash;
         public Canvas Cvs_Start;
@@ -29,26 +25,26 @@ namespace ABZ_Ui
         #region Screen Changers
         public void Bton_Splash()
         {
-            audio.Play("Clicked");
+            _audio.Play("Clicked");
             TurnOffCanvas(Cvs_Splash);
             TurnOnCanvas(Cvs_Start);
         }
         public void Bton_Campaing()
         {
-            audio.Play("Clicked");
+            _audio.Play("Clicked");
             TurnOffCanvas(Cvs_Start);
             TurnOnCanvas(Cvs_Campaing);
         }
         public void Bton_Campaing_B()
         {
-            audio.Play("Back");
+            _audio.Play("Back");
 
             TurnOffCanvas(Cvs_Campaing);
             TurnOnCanvas(Cvs_Start);
         }
         public void Bton_Options()
         {
-            audio.Play("Back");
+            _audio.Play("Back");
 
             TurnOffCanvas(Cvs_Start);
             TurnOnCanvas(Cvs_Options);
@@ -56,19 +52,19 @@ namespace ABZ_Ui
         public void Bton_Options_B()
         {
 
-            audio.Play("Back");
+            _audio.Play("Back");
             TurnOffCanvas(Cvs_Options);
             TurnOnCanvas(Cvs_Start);
         }
         public void Bton_Chapters()
         {
-            audio.Play("Clicked");
+            _audio.Play("Clicked");
             TurnOffCanvas(Cvs_Campaing);
             TurnOnCanvas(Cvs_ChapterSelect);
         }
         public void Bton_Chapters_B()
         {
-            audio.Play("Back");
+            _audio.Play("Back");
             TurnOffCanvas(Cvs_ChapterSelect);
             TurnOnCanvas(Cvs_Campaing);
         }
@@ -124,7 +120,7 @@ namespace ABZ_Ui
         #region ChapterSelect
         public void LoadLvl1()
         {
-            SceneManager.LoadScene("04_lvl_1_1_TrainingDay_Underground 1");
+            SceneManager.LoadScene("02_MissionBriefingStart");
         }
         public void LoadLvl2()
         {

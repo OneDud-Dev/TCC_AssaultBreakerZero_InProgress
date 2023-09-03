@@ -10,12 +10,12 @@ namespace ABZ_Levels
 {
     public class _lvl_1_2_Manager : MonoBehaviour
     {
-        public bool levelHasEnded;
-        public Pc_References pcData;
-        public GameObject lv1Dialogues;
-        public Ui_HUD_Timer playTime;
-        public int enemiesDefeated;
-        public GameObject lvl1_2_OST;
+        public bool           levelHasEnded = false;
+        public Pc_References  pcData;
+        //public GameObject     lv1Dialogues;
+        public Ui_HUD_Timer   playTime;
+        public int            enemiesDefeated;
+        public GameObject     lvl1_2_OST;
 
         public Game_Events EventEnding;
         public float t = 0;
@@ -30,10 +30,7 @@ namespace ABZ_Levels
 
         private void Update()
         {
-
-            if (levelHasEnded) { EndLevel(); ; }
-            
-
+            if (levelHasEnded) { changeLevel(); }
         }
 
 
@@ -45,20 +42,28 @@ namespace ABZ_Levels
 
             if (enemiesDefeated >= 9)
             {
+                Ending();
+            }
+        }
+
+        public void Ending()
+        {
+            if (!levelHasEnded)
+            {
+                EventEnding.Raise();
+                playTime.SaveTempoDecorrido();
+                playTime.EndTimer();
                 levelHasEnded = true;
             }
         }
 
-        public void EndLevel()
+        public void changeLevel()
         {
-            
-            EventEnding.Raise();
-            playTime.EndTimer();
             t += Time.deltaTime;
 
             if (t >= 10)
             {
-                SceneManager.LoadScene("01_StartScreen 1");
+                SceneManager.LoadScene("02_MissionBriefingEnding");
             }
         }
 

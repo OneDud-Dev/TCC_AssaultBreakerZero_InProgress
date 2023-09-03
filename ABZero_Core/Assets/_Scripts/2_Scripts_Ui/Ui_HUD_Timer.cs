@@ -12,10 +12,11 @@ namespace ABZ_Ui
 
         [Header("References")]
         public TMP_Text txtTimeValue;
+        public SO_LevelBriefing saveTimerToSO;
 
         [Header("Time Variables")]
         //public string tempoDePartidaString;
-        private float tempoDecorrido;
+        private float tempoDecorrido = 0;
         private TimeSpan tempoJogando;
 
         [SerializeField] private bool tempoEstaPassando;
@@ -29,7 +30,7 @@ namespace ABZ_Ui
 
         private void Start()
         {
-            //tempoDePartidaString = "00:00:00";
+            
 
             tempoEstaPassando = true;
             StartLevelTimer();
@@ -46,7 +47,7 @@ namespace ABZ_Ui
 
 
             tempoEstaPassando = true;
-            tempoDecorrido = 0f;
+            tempoDecorrido += saveTimerToSO.endingTime;
 
             StartCoroutine(AtualizarTempo());
         }
@@ -55,6 +56,8 @@ namespace ABZ_Ui
         {
             tempoEstaPassando = false;
         }
+
+        public void SaveTempoDecorrido() => saveTimerToSO.endingTime += tempoDecorrido;
 
         private IEnumerator AtualizarTempo()
         {
